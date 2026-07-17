@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>矯正歯科専門医 筆記試験対策ノート 2026</title>
 <style>
   :root{
@@ -205,9 +210,73 @@
   }
   .howto b{display:block; font-size:13.5px; margin-bottom:4px;}
 
+  /* ---- Theme toggle button ---- */
+  .theme-toggle{
+    position:fixed; top:12px; right:12px; z-index:40;
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--border);
+    background:var(--bg-elevated); color:var(--ink); box-shadow:var(--shadow);
+    font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .theme-toggle:focus-visible, .icon-btn:focus-visible, details.qa summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  /* ---- Study toolbar (search / filter / progress) ---- */
+  .toolbar{
+    position:sticky; top:0; z-index:25; background:var(--bg); border-bottom:1px solid var(--border);
+    padding:10px 0 8px;
+  }
+  .toolbar-inner{display:flex; flex-direction:column; gap:8px;}
+  .search-row{display:flex; gap:8px; align-items:center;}
+  .search-box{
+    flex:1; display:flex; align-items:center; gap:6px; background:var(--bg-elevated);
+    border:1px solid var(--border); border-radius:10px; padding:8px 11px;
+  }
+  .search-box svg{flex:0 0 auto; opacity:.55;}
+  .search-box input{
+    border:none; outline:none; background:transparent; color:var(--ink); font-size:13.5px; width:100%;
+    font-family:inherit;
+  }
+  .search-box input::placeholder{color:var(--ink-faint);}
+  .filter-chip{
+    flex:0 0 auto; font-size:12px; font-weight:700; padding:8px 12px; border-radius:10px;
+    background:var(--bg-elevated); border:1px solid var(--border); color:var(--ink-muted); cursor:pointer;
+    white-space:nowrap;
+  }
+  .filter-chip.active{background:var(--accent); border-color:var(--accent); color:var(--accent-ink);}
+  .cat-row{display:flex; gap:6px; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;}
+  .cat-row::-webkit-scrollbar{display:none;}
+  .cat-chip{
+    flex:0 0 auto; font-size:11.5px; font-weight:600; padding:6px 11px; border-radius:999px;
+    background:var(--bg-elevated); border:1px solid var(--border); color:var(--ink-muted); cursor:pointer;
+    white-space:nowrap;
+  }
+  .cat-chip.active{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-soft-ink);}
+  .progress-row{display:flex; align-items:center; gap:9px; font-size:11.5px; color:var(--ink-muted);}
+  .progress-track{flex:1; height:6px; background:var(--bg-sunken); border-radius:99px; overflow:hidden;}
+  .progress-fill{height:100%; background:var(--accent); border-radius:99px; transition:width .25s ease; width:0%;}
+  .progress-num{font-variant-numeric:tabular-nums; font-weight:700; color:var(--ink); flex:0 0 auto;}
+  .no-results{display:none; text-align:center; color:var(--ink-faint); font-size:13px; padding:24px 0;}
+
+  /* ---- Q&A item enhancements ---- */
+  details.qa summary{justify-content:space-between;}
+  details.qa summary::after{content:""; display:none;}
+  .qa-q{flex:1; padding-right:8px;}
+  .qa-actions{display:flex; gap:4px; flex:0 0 auto;}
+  .icon-btn{
+    width:30px; height:30px; border-radius:8px; border:1px solid var(--border); background:var(--bg-sunken);
+    color:var(--ink-faint); font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    line-height:1;
+  }
+  .bm-btn.active{background:var(--warn-soft); border-color:var(--warn); color:var(--warn-soft-ink);}
+  .ck-btn.active{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-soft-ink);}
+  details.qa[data-hidden="true"]{display:none;}
+  details.qa mark{background:var(--warn-soft); color:var(--warn-soft-ink); border-radius:3px; padding:0 2px;}
+  .qa-group[data-empty="true"]{display:none;}
+
   ::selection{background:var(--accent-soft); color:var(--accent-soft-ink);}
 </style>
 
+</head>
+<body>
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow">2026年度 矯正歯科専門医 筆記試験</div>
@@ -575,110 +644,132 @@
 
 <section id="s9">
   <div class="sec-head"><span class="sec-num">9</span><h2>想定問題・セルフチェック（全80問）</h2></div>
-  <p class="lede">過去問がないため、本ノート内で確認済みの記述だけを使った自作の一問一答。各問題の質問部分をタップすると解答が開く。</p>
+  <p class="lede">過去問がないため、本ノート内で確認済みの記述だけを使った自作の一問一答。質問をタップすると解答が開く。☆でブックマーク、✓で既読チェックでき、ブラウザに保存される。</p>
+</section>
+
+<div class="toolbar">
+  <div class="wrap toolbar-inner">
+    <div class="search-row">
+      <div class="search-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="qaSearch" type="text" placeholder="キーワードで検索（例：固定、罰則、6mm）" oninput="applyFilters()">
+      </div>
+      <button type="button" class="filter-chip" id="bmFilterBtn" onclick="toggleBmFilter()">☆ ブックマークのみ</button>
+    </div>
+    <div class="cat-row" id="catRow"></div>
+    <div class="progress-row">
+      <span>既読</span>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <span class="progress-num" id="progressNum">0/80</span>
+    </div>
+  </div>
+</div>
+
+<section id="s9b">
+  <div class="no-results" id="noResults">該当する問題が見つかりません。</div>
 
   <div class="qa-group">
     <h4>規則・制度系</h4>
-    <details class="qa"><summary>学会の正式名称と主たる事務所の所在地は？</summary><div class="answer">公益社団法人日本矯正歯科学会。主たる事務所：<b>東京都豊島区</b>。</div></details>
-    <details class="qa"><summary>社員（代議員）の人数と改選周期は？</summary><div class="answer"><b>200〜250名</b>、2年に1度選挙。</div></details>
-    <details class="qa"><summary>定時総会の特別決議に必要な要件は？</summary><div class="answer">総代議員の<b>半数以上出席＋議決権の2/3以上</b>。</div></details>
-    <details class="qa"><summary>専門医の常勤臨床研修は通算何年以上・何症例以上？</summary><div class="answer">通算<b>5年以上・150症例以上</b>。</div></details>
-    <details class="qa"><summary>「常勤」の定義（週・年間日数・年間時間）は？</summary><div class="answer">週<b>3日以上</b>・年<b>220日以上</b>・年<b>1320時間以上</b>。</div></details>
-    <details class="qa"><summary>認定医の更新は何年毎か。3回目以降で免除される要件は？</summary><div class="answer"><b>5年毎</b>。臨床報告の要件が免除され、専門領域研修単位のみで可。</div></details>
-    <details class="qa"><summary>専門医資格の取得・更新をもって、認定医資格はどう扱われるか？</summary><div class="answer">同時に<b>認定医の更新も行ったものとみなされる</b>（第15条、二重申請不要）。</div></details>
-    <details class="qa"><summary>倫理規程 第41条の内容は？</summary><div class="answer"><b>公衆衛生</b>の向上への協力、保健活動への協力を惜しんではならない。</div></details>
-    <details class="qa"><summary>倫理規程 第42条の内容は？</summary><div class="answer"><b>医療保険・介護保険制度</b>が健全に構築されるよう協力。保険診療の適切な実施、不正行為の禁止。</div></details>
-    <details class="qa"><summary>【二重下線】倫理規程 第5条は？</summary><div class="answer">我国の<b>法令</b>、学会の<b>定款・規程・規則・綱領等の遵守</b>。</div></details>
-    <details class="qa"><summary>【二重下線】倫理規程 第25条の要点は？</summary><div class="answer">医療法の範囲内、<b>虚偽・誇大の禁止</b>、患者を誤導しない、品位を損なわない。</div></details>
-    <details class="qa"><summary>医療広告ガイドラインの禁止される広告8類型は？</summary><div class="answer">虚偽広告／比較優良広告／誇大広告／公序良俗違反／広告可能事項以外／体験談／誤認前後写真／その他。</div></details>
-    <details class="qa"><summary>医療法違反（法第87条第1号）の罰則は？</summary><div class="answer"><b>6月以下の懲役又は30万円以下の罰金</b>。</div></details>
-    <details class="qa"><summary>報告命令違反・立入検査拒否（法第89条第2号）の罰則は？</summary><div class="answer"><b>20万円以下の罰金</b>。</div></details>
-    <details class="qa"><summary>3B専門医共通研修の5区分は？</summary><div class="answer">①医療倫理　②患者・医療者関係の構築　③医療安全　④院内感染対策　⑤医療関連法規・医療経済。</div></details>
-    <details class="qa"><summary>倫理規程 第9条における「研究」と「発表」の定義は？</summary><div class="answer">研究＝計画立案・実施・成果の発表評価にいたる全過程。発表＝新たな知見・発見や専門的知見を公表する行為。</div></details>
-    <details class="qa"><summary>定款 事業（第4条）の8つの事業を挙げよ。</summary><div class="answer">学術大会・講演会の開催／機関誌等刊行物の発行／教育・研究の調査と推進／医療・対社会事業の実施／研究の奨励及び研究業績の表彰／認定医・指導医・専門医制度の実施／関連学術団体との連絡協力／国際的な研究協力の推進。</div></details>
-    <details class="qa"><summary>定款 総会の決議事項を5つ挙げよ。</summary><div class="answer">会員の除名／理事及び監事の選任又は解任／貸借対照表等の承認／定款の変更／解散及び残余財産の処分。</div></details>
-    <details class="qa"><summary>定款 理事・監事の任期は？</summary><div class="answer">選任後<b>2年以内に終了する事業年度の定時総会まで</b>。</div></details>
-    <details class="qa"><summary>定款 事業年度は？</summary><div class="answer">毎年<b>1月1日〜12月31日</b>。</div></details>
-    <details class="qa"><summary>認定医制度 更新の単位数目安（1回目／2回目／3回目以降）は？</summary><div class="answer">1回目<b>40単位以上</b>／2回目<b>50単位以上</b>／3回目以降<b>75単位以上</b>（直接の臨床報告を行った場合は50単位以上に軽減）。</div></details>
-    <details class="qa"><summary>認定医制度 正規研修と同等の実績を示せる代替ルートを2つ挙げよ。</summary><div class="answer">基本研修修了程度検定試験（施行細則第5条）／臨床研修修了程度検定審査（第6条）。</div></details>
-    <details class="qa"><summary>倫理規程は全何章・何条構成か？</summary><div class="answer"><b>全8章・50条</b>。①会員の基本的姿勢②研究活動③医療活動④教育活動⑤認定医⑥専門医⑦指導医⑧役員・委員会委員。</div></details>
-    <details class="qa"><summary>【二重下線】倫理規程 第46条(2)(4)(5)(6)は認定医の何について定めているか？</summary><div class="answer">学会・資格・矯正歯科医療全体への<b>信頼影響の認識</b>、<b>品位保持</b>、<b>規則遵守</b>、広告の<b>医療法準拠</b>。（(1)(3)は下線なし）</div></details>
-    <details class="qa"><summary>医療広告GLの広告可能事項の限定解除、4要件を挙げよ。</summary><div class="answer">①患者等が自ら求めて入手する情報を表示するウェブサイト等であること②問い合わせ先の明示③自由診療の内容・費用等の情報提供④自由診療の主なリスク・副作用等の情報提供。</div></details>
-    <details class="qa"><summary>未承認医薬品等を自由診療で使用する場合の限定解除要件を4つ挙げよ。</summary><div class="answer">①未承認医薬品等であることの明示②入手経路等の明示③国内の承認医薬品等の有無の明示④諸外国における安全性等に係る情報の明示。</div></details>
-    <details class="qa"><summary>3A基本方針：歯科専門医機構の基本理念5項目のうち①は？</summary><div class="answer"><b>プロフェッショナルオートノミー</b>に基づいた質の保証・維持。</div></details>
-    <details class="qa"><summary>3A：申請学会の要件のうち会員数の基準は？</summary><div class="answer">会員数が<b>千人以上</b>であり、かつ、その<b>8割以上</b>が当該認定に係る歯科医師であること。</div></details>
-    <details class="qa"><summary>3B専門医共通研修④院内感染対策の具体的キーワードを3つ挙げよ。</summary><div class="answer">標準予防策（スタンダードプレコーション）／歯科用器材の滅菌と消毒／耐性菌対策と抗菌薬の適正使用。</div></details>
+    <details class="qa" id="q1" data-cat="規則・制度系" data-q="学会の正式名称と主たる事務所の所在地は？" data-a="公益社団法人日本矯正歯科学会。主たる事務所：東京都豊島区。"><summary><span class="qa-q">学会の正式名称と主たる事務所の所在地は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q1')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q1')">✓</button></span></summary><div class="answer">公益社団法人日本矯正歯科学会。主たる事務所：<b>東京都豊島区</b>。</div></details>
+    <details class="qa" id="q2" data-cat="規則・制度系" data-q="社員（代議員）の人数と改選周期は？" data-a="200〜250名、2年に1度選挙。"><summary><span class="qa-q">社員（代議員）の人数と改選周期は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q2')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q2')">✓</button></span></summary><div class="answer"><b>200〜250名</b>、2年に1度選挙。</div></details>
+    <details class="qa" id="q3" data-cat="規則・制度系" data-q="定時総会の特別決議に必要な要件は？" data-a="総代議員の半数以上出席＋議決権の2/3以上。"><summary><span class="qa-q">定時総会の特別決議に必要な要件は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q3')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q3')">✓</button></span></summary><div class="answer">総代議員の<b>半数以上出席＋議決権の2/3以上</b>。</div></details>
+    <details class="qa" id="q4" data-cat="規則・制度系" data-q="専門医の常勤臨床研修は通算何年以上・何症例以上？" data-a="通算5年以上・150症例以上。"><summary><span class="qa-q">専門医の常勤臨床研修は通算何年以上・何症例以上？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q4')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q4')">✓</button></span></summary><div class="answer">通算<b>5年以上・150症例以上</b>。</div></details>
+    <details class="qa" id="q5" data-cat="規則・制度系" data-q="「常勤」の定義（週・年間日数・年間時間）は？" data-a="週3日以上・年220日以上・年1320時間以上。"><summary><span class="qa-q">「常勤」の定義（週・年間日数・年間時間）は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q5')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q5')">✓</button></span></summary><div class="answer">週<b>3日以上</b>・年<b>220日以上</b>・年<b>1320時間以上</b>。</div></details>
+    <details class="qa" id="q6" data-cat="規則・制度系" data-q="認定医の更新は何年毎か。3回目以降で免除される要件は？" data-a="5年毎。臨床報告の要件が免除され、専門領域研修単位のみで可。"><summary><span class="qa-q">認定医の更新は何年毎か。3回目以降で免除される要件は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q6')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q6')">✓</button></span></summary><div class="answer"><b>5年毎</b>。臨床報告の要件が免除され、専門領域研修単位のみで可。</div></details>
+    <details class="qa" id="q7" data-cat="規則・制度系" data-q="専門医資格の取得・更新をもって、認定医資格はどう扱われるか？" data-a="同時に認定医の更新も行ったものとみなされる（第15条、二重申請不要）。"><summary><span class="qa-q">専門医資格の取得・更新をもって、認定医資格はどう扱われるか？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q7')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q7')">✓</button></span></summary><div class="answer">同時に<b>認定医の更新も行ったものとみなされる</b>（第15条、二重申請不要）。</div></details>
+    <details class="qa" id="q8" data-cat="規則・制度系" data-q="倫理規程 第41条の内容は？" data-a="公衆衛生の向上への協力、保健活動への協力を惜しんではならない。"><summary><span class="qa-q">倫理規程 第41条の内容は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q8')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q8')">✓</button></span></summary><div class="answer"><b>公衆衛生</b>の向上への協力、保健活動への協力を惜しんではならない。</div></details>
+    <details class="qa" id="q9" data-cat="規則・制度系" data-q="倫理規程 第42条の内容は？" data-a="医療保険・介護保険制度が健全に構築されるよう協力。保険診療の適切な実施、不正行為の禁止。"><summary><span class="qa-q">倫理規程 第42条の内容は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q9')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q9')">✓</button></span></summary><div class="answer"><b>医療保険・介護保険制度</b>が健全に構築されるよう協力。保険診療の適切な実施、不正行為の禁止。</div></details>
+    <details class="qa" id="q10" data-cat="規則・制度系" data-q="【二重下線】倫理規程 第5条は？" data-a="我国の法令、学会の定款・規程・規則・綱領等の遵守。"><summary><span class="qa-q">【二重下線】倫理規程 第5条は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q10')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q10')">✓</button></span></summary><div class="answer">我国の<b>法令</b>、学会の<b>定款・規程・規則・綱領等の遵守</b>。</div></details>
+    <details class="qa" id="q11" data-cat="規則・制度系" data-q="【二重下線】倫理規程 第25条の要点は？" data-a="医療法の範囲内、虚偽・誇大の禁止、患者を誤導しない、品位を損なわない。"><summary><span class="qa-q">【二重下線】倫理規程 第25条の要点は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q11')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q11')">✓</button></span></summary><div class="answer">医療法の範囲内、<b>虚偽・誇大の禁止</b>、患者を誤導しない、品位を損なわない。</div></details>
+    <details class="qa" id="q12" data-cat="規則・制度系" data-q="医療広告ガイドラインの禁止される広告8類型は？" data-a="虚偽広告／比較優良広告／誇大広告／公序良俗違反／広告可能事項以外／体験談／誤認前後写真／その他。"><summary><span class="qa-q">医療広告ガイドラインの禁止される広告8類型は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q12')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q12')">✓</button></span></summary><div class="answer">虚偽広告／比較優良広告／誇大広告／公序良俗違反／広告可能事項以外／体験談／誤認前後写真／その他。</div></details>
+    <details class="qa" id="q13" data-cat="規則・制度系" data-q="医療法違反（法第87条第1号）の罰則は？" data-a="6月以下の懲役又は30万円以下の罰金。"><summary><span class="qa-q">医療法違反（法第87条第1号）の罰則は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q13')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q13')">✓</button></span></summary><div class="answer"><b>6月以下の懲役又は30万円以下の罰金</b>。</div></details>
+    <details class="qa" id="q14" data-cat="規則・制度系" data-q="報告命令違反・立入検査拒否（法第89条第2号）の罰則は？" data-a="20万円以下の罰金。"><summary><span class="qa-q">報告命令違反・立入検査拒否（法第89条第2号）の罰則は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q14')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q14')">✓</button></span></summary><div class="answer"><b>20万円以下の罰金</b>。</div></details>
+    <details class="qa" id="q15" data-cat="規則・制度系" data-q="3B専門医共通研修の5区分は？" data-a="①医療倫理　②患者・医療者関係の構築　③医療安全　④院内感染対策　⑤医療関連法規・医療経済。"><summary><span class="qa-q">3B専門医共通研修の5区分は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q15')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q15')">✓</button></span></summary><div class="answer">①医療倫理　②患者・医療者関係の構築　③医療安全　④院内感染対策　⑤医療関連法規・医療経済。</div></details>
+    <details class="qa" id="q16" data-cat="規則・制度系" data-q="倫理規程 第9条における「研究」と「発表」の定義は？" data-a="研究＝計画立案・実施・成果の発表評価にいたる全過程。発表＝新たな知見・発見や専門的知見を公表する行為。"><summary><span class="qa-q">倫理規程 第9条における「研究」と「発表」の定義は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q16')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q16')">✓</button></span></summary><div class="answer">研究＝計画立案・実施・成果の発表評価にいたる全過程。発表＝新たな知見・発見や専門的知見を公表する行為。</div></details>
+    <details class="qa" id="q17" data-cat="規則・制度系" data-q="定款 事業（第4条）の8つの事業を挙げよ。" data-a="学術大会・講演会の開催／機関誌等刊行物の発行／教育・研究の調査と推進／医療・対社会事業の実施／研究の奨励及び研究業績の表彰／認定医・指導医・専門医制度の実施／関連学術団体との連絡協力／国際的な研究協力の推進。"><summary><span class="qa-q">定款 事業（第4条）の8つの事業を挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q17')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q17')">✓</button></span></summary><div class="answer">学術大会・講演会の開催／機関誌等刊行物の発行／教育・研究の調査と推進／医療・対社会事業の実施／研究の奨励及び研究業績の表彰／認定医・指導医・専門医制度の実施／関連学術団体との連絡協力／国際的な研究協力の推進。</div></details>
+    <details class="qa" id="q18" data-cat="規則・制度系" data-q="定款 総会の決議事項を5つ挙げよ。" data-a="会員の除名／理事及び監事の選任又は解任／貸借対照表等の承認／定款の変更／解散及び残余財産の処分。"><summary><span class="qa-q">定款 総会の決議事項を5つ挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q18')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q18')">✓</button></span></summary><div class="answer">会員の除名／理事及び監事の選任又は解任／貸借対照表等の承認／定款の変更／解散及び残余財産の処分。</div></details>
+    <details class="qa" id="q19" data-cat="規則・制度系" data-q="定款 理事・監事の任期は？" data-a="選任後2年以内に終了する事業年度の定時総会まで。"><summary><span class="qa-q">定款 理事・監事の任期は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q19')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q19')">✓</button></span></summary><div class="answer">選任後<b>2年以内に終了する事業年度の定時総会まで</b>。</div></details>
+    <details class="qa" id="q20" data-cat="規則・制度系" data-q="定款 事業年度は？" data-a="毎年1月1日〜12月31日。"><summary><span class="qa-q">定款 事業年度は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q20')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q20')">✓</button></span></summary><div class="answer">毎年<b>1月1日〜12月31日</b>。</div></details>
+    <details class="qa" id="q21" data-cat="規則・制度系" data-q="認定医制度 更新の単位数目安（1回目／2回目／3回目以降）は？" data-a="1回目40単位以上／2回目50単位以上／3回目以降75単位以上（直接の臨床報告を行った場合は50単位以上に軽減）。"><summary><span class="qa-q">認定医制度 更新の単位数目安（1回目／2回目／3回目以降）は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q21')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q21')">✓</button></span></summary><div class="answer">1回目<b>40単位以上</b>／2回目<b>50単位以上</b>／3回目以降<b>75単位以上</b>（直接の臨床報告を行った場合は50単位以上に軽減）。</div></details>
+    <details class="qa" id="q22" data-cat="規則・制度系" data-q="認定医制度 正規研修と同等の実績を示せる代替ルートを2つ挙げよ。" data-a="基本研修修了程度検定試験（施行細則第5条）／臨床研修修了程度検定審査（第6条）。"><summary><span class="qa-q">認定医制度 正規研修と同等の実績を示せる代替ルートを2つ挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q22')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q22')">✓</button></span></summary><div class="answer">基本研修修了程度検定試験（施行細則第5条）／臨床研修修了程度検定審査（第6条）。</div></details>
+    <details class="qa" id="q23" data-cat="規則・制度系" data-q="倫理規程は全何章・何条構成か？" data-a="全8章・50条。①会員の基本的姿勢②研究活動③医療活動④教育活動⑤認定医⑥専門医⑦指導医⑧役員・委員会委員。"><summary><span class="qa-q">倫理規程は全何章・何条構成か？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q23')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q23')">✓</button></span></summary><div class="answer"><b>全8章・50条</b>。①会員の基本的姿勢②研究活動③医療活動④教育活動⑤認定医⑥専門医⑦指導医⑧役員・委員会委員。</div></details>
+    <details class="qa" id="q24" data-cat="規則・制度系" data-q="【二重下線】倫理規程 第46条(2)(4)(5)(6)は認定医の何について定めているか？" data-a="学会・資格・矯正歯科医療全体への信頼影響の認識、品位保持、規則遵守、広告の医療法準拠。（(1)(3)は下線なし）"><summary><span class="qa-q">【二重下線】倫理規程 第46条(2)(4)(5)(6)は認定医の何について定めているか？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q24')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q24')">✓</button></span></summary><div class="answer">学会・資格・矯正歯科医療全体への<b>信頼影響の認識</b>、<b>品位保持</b>、<b>規則遵守</b>、広告の<b>医療法準拠</b>。（(1)(3)は下線なし）</div></details>
+    <details class="qa" id="q25" data-cat="規則・制度系" data-q="医療広告GLの広告可能事項の限定解除、4要件を挙げよ。" data-a="①患者等が自ら求めて入手する情報を表示するウェブサイト等であること②問い合わせ先の明示③自由診療の内容・費用等の情報提供④自由診療の主なリスク・副作用等の情報提供。"><summary><span class="qa-q">医療広告GLの広告可能事項の限定解除、4要件を挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q25')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q25')">✓</button></span></summary><div class="answer">①患者等が自ら求めて入手する情報を表示するウェブサイト等であること②問い合わせ先の明示③自由診療の内容・費用等の情報提供④自由診療の主なリスク・副作用等の情報提供。</div></details>
+    <details class="qa" id="q26" data-cat="規則・制度系" data-q="未承認医薬品等を自由診療で使用する場合の限定解除要件を4つ挙げよ。" data-a="①未承認医薬品等であることの明示②入手経路等の明示③国内の承認医薬品等の有無の明示④諸外国における安全性等に係る情報の明示。"><summary><span class="qa-q">未承認医薬品等を自由診療で使用する場合の限定解除要件を4つ挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q26')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q26')">✓</button></span></summary><div class="answer">①未承認医薬品等であることの明示②入手経路等の明示③国内の承認医薬品等の有無の明示④諸外国における安全性等に係る情報の明示。</div></details>
+    <details class="qa" id="q27" data-cat="規則・制度系" data-q="3A基本方針：歯科専門医機構の基本理念5項目のうち①は？" data-a="プロフェッショナルオートノミーに基づいた質の保証・維持。"><summary><span class="qa-q">3A基本方針：歯科専門医機構の基本理念5項目のうち①は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q27')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q27')">✓</button></span></summary><div class="answer"><b>プロフェッショナルオートノミー</b>に基づいた質の保証・維持。</div></details>
+    <details class="qa" id="q28" data-cat="規則・制度系" data-q="3A：申請学会の要件のうち会員数の基準は？" data-a="会員数が千人以上であり、かつ、その8割以上が当該認定に係る歯科医師であること。"><summary><span class="qa-q">3A：申請学会の要件のうち会員数の基準は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q28')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q28')">✓</button></span></summary><div class="answer">会員数が<b>千人以上</b>であり、かつ、その<b>8割以上</b>が当該認定に係る歯科医師であること。</div></details>
+    <details class="qa" id="q29" data-cat="規則・制度系" data-q="3B専門医共通研修④院内感染対策の具体的キーワードを3つ挙げよ。" data-a="標準予防策（スタンダードプレコーション）／歯科用器材の滅菌と消毒／耐性菌対策と抗菌薬の適正使用。"><summary><span class="qa-q">3B専門医共通研修④院内感染対策の具体的キーワードを3つ挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q29')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q29')">✓</button></span></summary><div class="answer">標準予防策（スタンダードプレコーション）／歯科用器材の滅菌と消毒／耐性菌対策と抗菌薬の適正使用。</div></details>
   </div>
 
   <div class="qa-group">
     <h4>診療ガイドライン（4A〜4G）</h4>
-    <details class="qa"><summary>4B開咬編の発刊年月は？</summary><div class="answer"><b>2023年9月</b>。</div></details>
-    <details class="qa"><summary>4C上顎前突編の対象は？</summary><div class="answer">オーバージェットの大きい<b>II級1類</b>（2類は対象外）。</div></details>
-    <details class="qa"><summary>4D成長期の骨格性下顎前突編の発刊年月と対象時期は？</summary><div class="answer"><b>2020年7月</b>公開。<b>思春期性成長終了前</b>の骨格性下顎前突が対象。</div></details>
-    <details class="qa"><summary>4D：骨格性下顎前突の4分類は？</summary><div class="answer">上顎骨後方位／下顎骨前方位／両者複合／歯性。</div></details>
-    <details class="qa"><summary>4D：ガイドライン作成に採用された方式は？</summary><div class="answer"><b>GRADE方式</b>。</div></details>
-    <details class="qa"><summary>開咬の分類2種は？</summary><div class="answer">歯槽性開咬（dento-alveolar open bite）と骨格性開咬（skeletal open bite）。</div></details>
-    <details class="qa"><summary>開咬の原因となる代表的な口腔習癖を2つ挙げよ。</summary><div class="answer">指しゃぶり（吸指癖）と舌突出癖。</div></details>
+    <details class="qa" id="q30" data-cat="診療ガイドライン（4A〜4G）" data-q="4B開咬編の発刊年月は？" data-a="2023年9月。"><summary><span class="qa-q">4B開咬編の発刊年月は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q30')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q30')">✓</button></span></summary><div class="answer"><b>2023年9月</b>。</div></details>
+    <details class="qa" id="q31" data-cat="診療ガイドライン（4A〜4G）" data-q="4C上顎前突編の対象は？" data-a="オーバージェットの大きいII級1類（2類は対象外）。"><summary><span class="qa-q">4C上顎前突編の対象は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q31')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q31')">✓</button></span></summary><div class="answer">オーバージェットの大きい<b>II級1類</b>（2類は対象外）。</div></details>
+    <details class="qa" id="q32" data-cat="診療ガイドライン（4A〜4G）" data-q="4D成長期の骨格性下顎前突編の発刊年月と対象時期は？" data-a="2020年7月公開。思春期性成長終了前の骨格性下顎前突が対象。"><summary><span class="qa-q">4D成長期の骨格性下顎前突編の発刊年月と対象時期は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q32')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q32')">✓</button></span></summary><div class="answer"><b>2020年7月</b>公開。<b>思春期性成長終了前</b>の骨格性下顎前突が対象。</div></details>
+    <details class="qa" id="q33" data-cat="診療ガイドライン（4A〜4G）" data-q="4D：骨格性下顎前突の4分類は？" data-a="上顎骨後方位／下顎骨前方位／両者複合／歯性。"><summary><span class="qa-q">4D：骨格性下顎前突の4分類は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q33')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q33')">✓</button></span></summary><div class="answer">上顎骨後方位／下顎骨前方位／両者複合／歯性。</div></details>
+    <details class="qa" id="q34" data-cat="診療ガイドライン（4A〜4G）" data-q="4D：ガイドライン作成に採用された方式は？" data-a="GRADE方式。"><summary><span class="qa-q">4D：ガイドライン作成に採用された方式は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q34')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q34')">✓</button></span></summary><div class="answer"><b>GRADE方式</b>。</div></details>
+    <details class="qa" id="q35" data-cat="診療ガイドライン（4A〜4G）" data-q="開咬の分類2種は？" data-a="歯槽性開咬（dento-alveolar open bite）と骨格性開咬（skeletal open bite）。"><summary><span class="qa-q">開咬の分類2種は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q35')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q35')">✓</button></span></summary><div class="answer">歯槽性開咬（dento-alveolar open bite）と骨格性開咬（skeletal open bite）。</div></details>
+    <details class="qa" id="q36" data-cat="診療ガイドライン（4A〜4G）" data-q="開咬の原因となる代表的な口腔習癖を2つ挙げよ。" data-a="指しゃぶり（吸指癖）と舌突出癖。"><summary><span class="qa-q">開咬の原因となる代表的な口腔習癖を2つ挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q36')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q36')">✓</button></span></summary><div class="answer">指しゃぶり（吸指癖）と舌突出癖。</div></details>
   </div>
 
   <div class="qa-group">
     <h4>感染対策・医療安全（参考資料より）</h4>
-    <details class="qa"><summary>標準予防策の考え方は？</summary><div class="answer">血液・体液に関わる<b>すべての湿性物質</b>（汗を除く）を感染性のものとみなして対応する（Standard Precaution）。</div></details>
-    <details class="qa"><summary>歯科治療は感染リスクの視点で何カテゴリーに分けられるか？</summary><div class="answer">3カテゴリー：①観血的治療（抜歯・インプラント植立等）②観血的治療に準ずる治療（歯内療法・歯周療法等）③非観血的治療（矯正・補綴等）。</div></details>
-    <details class="qa"><summary>器具の滅菌消毒3分類は？</summary><div class="answer">クリティカル器具（滅菌）／セミクリティカル器具（消毒）／ノンクリティカル器具（洗浄）。</div></details>
-    <details class="qa"><summary>血液媒介病原体のうち、事前ワクチン接種で抗体を獲得できる唯一のものは？</summary><div class="answer"><b>B型肝炎ウイルス（HBV）</b>。</div></details>
-    <details class="qa"><summary>誤嚥物により気道閉鎖が強く疑われる場合、除去のために試みる方法を2つ挙げよ。</summary><div class="answer">ハイムリック法（患者の後ろに回り臍の上を圧迫）、背部叩打法（最終手段は輪状甲状靱帯穿刺・気管切開）。</div></details>
-    <details class="qa"><summary>年1回のメーカー点検が必要とされる診療室の機器を3つ挙げよ。</summary><div class="answer">歯科用治療ユニット（タービン・電気エンジン含む）、歯科用レーザー、超音波スケーラー。</div></details>
+    <details class="qa" id="q37" data-cat="感染対策・医療安全（参考資料より）" data-q="標準予防策の考え方は？" data-a="血液・体液に関わるすべての湿性物質（汗を除く）を感染性のものとみなして対応する（Standard Precaution）。"><summary><span class="qa-q">標準予防策の考え方は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q37')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q37')">✓</button></span></summary><div class="answer">血液・体液に関わる<b>すべての湿性物質</b>（汗を除く）を感染性のものとみなして対応する（Standard Precaution）。</div></details>
+    <details class="qa" id="q38" data-cat="感染対策・医療安全（参考資料より）" data-q="歯科治療は感染リスクの視点で何カテゴリーに分けられるか？" data-a="3カテゴリー：①観血的治療（抜歯・インプラント植立等）②観血的治療に準ずる治療（歯内療法・歯周療法等）③非観血的治療（矯正・補綴等）。"><summary><span class="qa-q">歯科治療は感染リスクの視点で何カテゴリーに分けられるか？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q38')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q38')">✓</button></span></summary><div class="answer">3カテゴリー：①観血的治療（抜歯・インプラント植立等）②観血的治療に準ずる治療（歯内療法・歯周療法等）③非観血的治療（矯正・補綴等）。</div></details>
+    <details class="qa" id="q39" data-cat="感染対策・医療安全（参考資料より）" data-q="器具の滅菌消毒3分類は？" data-a="クリティカル器具（滅菌）／セミクリティカル器具（消毒）／ノンクリティカル器具（洗浄）。"><summary><span class="qa-q">器具の滅菌消毒3分類は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q39')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q39')">✓</button></span></summary><div class="answer">クリティカル器具（滅菌）／セミクリティカル器具（消毒）／ノンクリティカル器具（洗浄）。</div></details>
+    <details class="qa" id="q40" data-cat="感染対策・医療安全（参考資料より）" data-q="血液媒介病原体のうち、事前ワクチン接種で抗体を獲得できる唯一のものは？" data-a="B型肝炎ウイルス（HBV）。"><summary><span class="qa-q">血液媒介病原体のうち、事前ワクチン接種で抗体を獲得できる唯一のものは？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q40')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q40')">✓</button></span></summary><div class="answer"><b>B型肝炎ウイルス（HBV）</b>。</div></details>
+    <details class="qa" id="q41" data-cat="感染対策・医療安全（参考資料より）" data-q="誤嚥物により気道閉鎖が強く疑われる場合、除去のために試みる方法を2つ挙げよ。" data-a="ハイムリック法（患者の後ろに回り臍の上を圧迫）、背部叩打法（最終手段は輪状甲状靱帯穿刺・気管切開）。"><summary><span class="qa-q">誤嚥物により気道閉鎖が強く疑われる場合、除去のために試みる方法を2つ挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q41')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q41')">✓</button></span></summary><div class="answer">ハイムリック法（患者の後ろに回り臍の上を圧迫）、背部叩打法（最終手段は輪状甲状靱帯穿刺・気管切開）。</div></details>
+    <details class="qa" id="q42" data-cat="感染対策・医療安全（参考資料より）" data-q="年1回のメーカー点検が必要とされる診療室の機器を3つ挙げよ。" data-a="歯科用治療ユニット（タービン・電気エンジン含む）、歯科用レーザー、超音波スケーラー。"><summary><span class="qa-q">年1回のメーカー点検が必要とされる診療室の機器を3つ挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q42')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q42')">✓</button></span></summary><div class="answer">歯科用治療ユニット（タービン・電気エンジン含む）、歯科用レーザー、超音波スケーラー。</div></details>
   </div>
 
   <div class="qa-group">
     <h4>HP・広告の不適切表現（参考資料より）</h4>
-    <details class="qa"><summary>比較優良広告に該当するNG表現を2つ挙げよ。</summary><div class="answer">「日本でもトップレベル」「あらゆる症例に対応」「世界で最も厳しい専門医制度」等。</div></details>
-    <details class="qa"><summary>「症例数6000件以上」という表記がNGとなる理由は？</summary><div class="answer">期間の併記がないため。<b>1年ごとに集計したものを複数年にわたって</b>示す必要がある。</div></details>
-    <details class="qa"><summary>治療法・装置名について学会HPガイドラインが求める原則は？</summary><div class="answer">学術用語集記載の用語か一般名称を使用。紛らわしい表現は学術用語と併記（例：インプラント矯正→歯科矯正用アンカースクリューを用いた矯正歯科治療）。</div></details>
-    <details class="qa"><summary>学会HPガイドラインで掲載を控えるべきとされる用語例を3つ挙げよ。</summary><div class="answer">ブライダル矯正、スピード矯正、プチ矯正（他にキッズ矯正・ティーンズ矯正・シニア矯正等）。</div></details>
-    <details class="qa"><summary>治療費表記で品位を損なうとされるNG例を2つ挙げよ。</summary><div class="answer">「〇〇県で最安価格」「他院との費用比較」「家族割引」「開院初年度割引」等。</div></details>
+    <details class="qa" id="q43" data-cat="HP・広告の不適切表現（参考資料より）" data-q="比較優良広告に該当するNG表現を2つ挙げよ。" data-a="「日本でもトップレベル」「あらゆる症例に対応」「世界で最も厳しい専門医制度」等。"><summary><span class="qa-q">比較優良広告に該当するNG表現を2つ挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q43')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q43')">✓</button></span></summary><div class="answer">「日本でもトップレベル」「あらゆる症例に対応」「世界で最も厳しい専門医制度」等。</div></details>
+    <details class="qa" id="q44" data-cat="HP・広告の不適切表現（参考資料より）" data-q="「症例数6000件以上」という表記がNGとなる理由は？" data-a="期間の併記がないため。1年ごとに集計したものを複数年にわたって示す必要がある。"><summary><span class="qa-q">「症例数6000件以上」という表記がNGとなる理由は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q44')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q44')">✓</button></span></summary><div class="answer">期間の併記がないため。<b>1年ごとに集計したものを複数年にわたって</b>示す必要がある。</div></details>
+    <details class="qa" id="q45" data-cat="HP・広告の不適切表現（参考資料より）" data-q="治療法・装置名について学会HPガイドラインが求める原則は？" data-a="学術用語集記載の用語か一般名称を使用。紛らわしい表現は学術用語と併記（例：インプラント矯正→歯科矯正用アンカースクリューを用いた矯正歯科治療）。"><summary><span class="qa-q">治療法・装置名について学会HPガイドラインが求める原則は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q45')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q45')">✓</button></span></summary><div class="answer">学術用語集記載の用語か一般名称を使用。紛らわしい表現は学術用語と併記（例：インプラント矯正→歯科矯正用アンカースクリューを用いた矯正歯科治療）。</div></details>
+    <details class="qa" id="q46" data-cat="HP・広告の不適切表現（参考資料より）" data-q="学会HPガイドラインで掲載を控えるべきとされる用語例を3つ挙げよ。" data-a="ブライダル矯正、スピード矯正、プチ矯正（他にキッズ矯正・ティーンズ矯正・シニア矯正等）。"><summary><span class="qa-q">学会HPガイドラインで掲載を控えるべきとされる用語例を3つ挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q46')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q46')">✓</button></span></summary><div class="answer">ブライダル矯正、スピード矯正、プチ矯正（他にキッズ矯正・ティーンズ矯正・シニア矯正等）。</div></details>
+    <details class="qa" id="q47" data-cat="HP・広告の不適切表現（参考資料より）" data-q="治療費表記で品位を損なうとされるNG例を2つ挙げよ。" data-a="「〇〇県で最安価格」「他院との費用比較」「家族割引」「開院初年度割引」等。"><summary><span class="qa-q">治療費表記で品位を損なうとされるNG例を2つ挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q47')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q47')">✓</button></span></summary><div class="answer">「〇〇県で最安価格」「他院との費用比較」「家族割引」「開院初年度割引」等。</div></details>
   </div>
 
   <div class="qa-group">
     <h4>教科書系（A〜E）</h4>
-    <details class="qa"><summary>骨吸収を担う細胞とその由来は？</summary><div class="answer"><b>破骨細胞</b>。血液幹細胞から分化した多核のマクロファージ。</div></details>
-    <details class="qa"><summary>Angleの不正咬合分類の基準は？</summary><div class="answer"><b>上下顎第一大臼歯の対咬関係</b>。</div></details>
-    <details class="qa"><summary>予防矯正と抑制矯正の違いは？</summary><div class="answer">予防矯正＝原因除去で発現自体を予防。抑制矯正＝既に生じた不正を早期発見で増悪抑制。</div></details>
-    <details class="qa"><summary>顎間ゴムのI級ゴムとII級ゴムの違いは？</summary><div class="answer"><b>I級</b>＝下顎臼歯部→上顎前歯/犬歯。<b>II級</b>＝上顎臼歯部→下顎前歯/犬歯。</div></details>
-    <details class="qa"><summary>固定の抵抗の性質による5分類は？</summary><div class="answer"><b>単純・不動・相反・加強・準備固定</b>。</div></details>
-    <details class="qa"><summary>抜歯空隙利用の固定3分類の基準は？</summary><div class="answer">臼歯近心移動許容量が抜歯空隙の<b>1/2以上＝最小</b>、<b>1/4〜1/2＝中等度</b>、<b>1/4未満＝最大</b>。</div></details>
-    <details class="qa"><summary>Tweedの準備固定で用いられる手法は？</summary><div class="answer">セカンドオーダーベンドとII級ゴムで下顎側方歯を<b>あらかじめ遠心傾斜</b>させておく。</div></details>
-    <details class="qa"><summary>スペース不足量による抜歯基準（プロフィト8章）は？</summary><div class="answer"><b>4mm以下</b>＝非抜歯可、<b>5〜9mm</b>＝境界域、<b>10mm以上</b>＝ほぼ必須抜歯。</div></details>
-    <details class="qa"><summary>オーバージェット何mm以上で切歯部外傷リスク約30%？</summary><div class="answer"><b>6mm以上</b>。</div></details>
-    <details class="qa"><summary>包括矯正治療のおおよその標準治療期間は？</summary><div class="answer">およそ<b>18〜30か月</b>。</div></details>
-    <details class="qa"><summary>口唇口蓋裂の咬合異常5特徴は？</summary><div class="answer">骨格性反対咬合、上顎歯列弓狭窄、上顎前歯舌側傾斜、顎裂と先天性欠如、顎裂近接歯の位置異常。</div></details>
-    <details class="qa"><summary>Lundstromが1925年に提唱した理論は？</summary><div class="answer"><b>歯槽基底論</b>。</div></details>
-    <details class="qa"><summary>顎外固定装置を3つ挙げよ。</summary><div class="answer">ヘッドギア、上顎前方牽引装置、チンキャップ（オトガイ帽装置）。</div></details>
-    <details class="qa"><summary>インプラント（TAD）による固定の利点と欠点は？</summary><div class="answer">利点＝固定源が骨と一体化し<b>固定喪失の心配が少ない</b>、患者協力度に依存しにくい。欠点＝植立・撤去に<b>観血処置が必要</b>、周囲の衛生管理が必要。</div></details>
-    <details class="qa"><summary>歯科矯正学2章にあるWHOの定義は何か？</summary><div class="answer">World Health Organization（世界保健機関）。「すべての人々が可能な最高の健康水準に到達すること」（憲章第1条）を目的とする。</div></details>
-    <details class="qa"><summary>視床下部から始まるホルモン軸が制御する現象は？（プロフィト4章）</summary><div class="answer">視床下部→脳下垂体前葉→性腺（精巣・卵巣・副腎）のホルモン軸が<b>第二次性徴の発現と成長スパート</b>を制御する。</div></details>
-    <details class="qa"><summary>トリーチャーコリンズ症候群の原因は？</summary><div class="answer">顔の外側の<b>間葉組織（胎生期結合組織）の全体的な欠如</b>。眼の外側と頬骨部の低形成、耳への影響を伴うことがある。</div></details>
-    <details class="qa"><summary>ヘミフェイシャルミクロソミアの主な原因は？</summary><div class="answer">胎生の初期段階における<b>神経堤細胞の欠如</b>（かつては鐙骨動脈からの出血が原因と考えられていたが、その後の研究で否定的）。</div></details>
-    <details class="qa"><summary>大臼歯関係改善の3手法（プロフィト17章）は？</summary><div class="answer">①顎外力・機能的装置による上下顎骨の成長差の利用②上下の前後的移動量の差の利用③顎間ゴムの利用。</div></details>
-    <details class="qa"><summary>抜歯論争の歴史でSpooner（1839）が提唱したことは？</summary><div class="answer">小臼歯あるいは第一大臼歯<b>4本の抜歯</b>をすすめた。</div></details>
-    <details class="qa"><summary>治療計画立案でプロフィト7章が強調する2つの回避すべき側面は？</summary><div class="answer"><b>過小治療（偽陰性）</b>と<b>過剰治療（偽陽性）</b>の両方を避けるように設計すること。</div></details>
-    <details class="qa"><summary>ワイヤーの力学特性を示す力・たわみ曲線上の3つのポイントは？</summary><div class="answer">比例限界、降伏点、（弾性復元をもたらす）弾性限界。ワイヤーは降伏点を超えても臨床的に有効な弾性復元力を示す。</div></details>
-    <details class="qa"><summary>保定の3分類（歯科矯正学19章）は？</summary><div class="answer">自然的保定、器械的保定、永久的保定。</div></details>
-    <details class="qa"><summary>咬合とarticulationの違い（歯科矯正学4章）は？</summary><div class="answer">かつては下顎が偏心位に滑走している時の歯の接触関係を<b>articulation（咬合）</b>、閉口時の接触状態を<b>occlusion（咬合）</b>と区別していたが、近年この区別の意義は薄れている。</div></details>
+    <details class="qa" id="q48" data-cat="教科書系（A〜E）" data-q="骨吸収を担う細胞とその由来は？" data-a="破骨細胞。血液幹細胞から分化した多核のマクロファージ。"><summary><span class="qa-q">骨吸収を担う細胞とその由来は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q48')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q48')">✓</button></span></summary><div class="answer"><b>破骨細胞</b>。血液幹細胞から分化した多核のマクロファージ。</div></details>
+    <details class="qa" id="q49" data-cat="教科書系（A〜E）" data-q="Angleの不正咬合分類の基準は？" data-a="上下顎第一大臼歯の対咬関係。"><summary><span class="qa-q">Angleの不正咬合分類の基準は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q49')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q49')">✓</button></span></summary><div class="answer"><b>上下顎第一大臼歯の対咬関係</b>。</div></details>
+    <details class="qa" id="q50" data-cat="教科書系（A〜E）" data-q="予防矯正と抑制矯正の違いは？" data-a="予防矯正＝原因除去で発現自体を予防。抑制矯正＝既に生じた不正を早期発見で増悪抑制。"><summary><span class="qa-q">予防矯正と抑制矯正の違いは？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q50')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q50')">✓</button></span></summary><div class="answer">予防矯正＝原因除去で発現自体を予防。抑制矯正＝既に生じた不正を早期発見で増悪抑制。</div></details>
+    <details class="qa" id="q51" data-cat="教科書系（A〜E）" data-q="顎間ゴムのI級ゴムとII級ゴムの違いは？" data-a="I級＝下顎臼歯部→上顎前歯/犬歯。II級＝上顎臼歯部→下顎前歯/犬歯。"><summary><span class="qa-q">顎間ゴムのI級ゴムとII級ゴムの違いは？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q51')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q51')">✓</button></span></summary><div class="answer"><b>I級</b>＝下顎臼歯部→上顎前歯/犬歯。<b>II級</b>＝上顎臼歯部→下顎前歯/犬歯。</div></details>
+    <details class="qa" id="q52" data-cat="教科書系（A〜E）" data-q="固定の抵抗の性質による5分類は？" data-a="単純・不動・相反・加強・準備固定。"><summary><span class="qa-q">固定の抵抗の性質による5分類は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q52')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q52')">✓</button></span></summary><div class="answer"><b>単純・不動・相反・加強・準備固定</b>。</div></details>
+    <details class="qa" id="q53" data-cat="教科書系（A〜E）" data-q="抜歯空隙利用の固定3分類の基準は？" data-a="臼歯近心移動許容量が抜歯空隙の1/2以上＝最小、1/4〜1/2＝中等度、1/4未満＝最大。"><summary><span class="qa-q">抜歯空隙利用の固定3分類の基準は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q53')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q53')">✓</button></span></summary><div class="answer">臼歯近心移動許容量が抜歯空隙の<b>1/2以上＝最小</b>、<b>1/4〜1/2＝中等度</b>、<b>1/4未満＝最大</b>。</div></details>
+    <details class="qa" id="q54" data-cat="教科書系（A〜E）" data-q="Tweedの準備固定で用いられる手法は？" data-a="セカンドオーダーベンドとII級ゴムで下顎側方歯をあらかじめ遠心傾斜させておく。"><summary><span class="qa-q">Tweedの準備固定で用いられる手法は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q54')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q54')">✓</button></span></summary><div class="answer">セカンドオーダーベンドとII級ゴムで下顎側方歯を<b>あらかじめ遠心傾斜</b>させておく。</div></details>
+    <details class="qa" id="q55" data-cat="教科書系（A〜E）" data-q="スペース不足量による抜歯基準（プロフィト8章）は？" data-a="4mm以下＝非抜歯可、5〜9mm＝境界域、10mm以上＝ほぼ必須抜歯。"><summary><span class="qa-q">スペース不足量による抜歯基準（プロフィト8章）は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q55')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q55')">✓</button></span></summary><div class="answer"><b>4mm以下</b>＝非抜歯可、<b>5〜9mm</b>＝境界域、<b>10mm以上</b>＝ほぼ必須抜歯。</div></details>
+    <details class="qa" id="q56" data-cat="教科書系（A〜E）" data-q="オーバージェット何mm以上で切歯部外傷リスク約30%？" data-a="6mm以上。"><summary><span class="qa-q">オーバージェット何mm以上で切歯部外傷リスク約30%？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q56')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q56')">✓</button></span></summary><div class="answer"><b>6mm以上</b>。</div></details>
+    <details class="qa" id="q57" data-cat="教科書系（A〜E）" data-q="包括矯正治療のおおよその標準治療期間は？" data-a="およそ18〜30か月。"><summary><span class="qa-q">包括矯正治療のおおよその標準治療期間は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q57')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q57')">✓</button></span></summary><div class="answer">およそ<b>18〜30か月</b>。</div></details>
+    <details class="qa" id="q58" data-cat="教科書系（A〜E）" data-q="口唇口蓋裂の咬合異常5特徴は？" data-a="骨格性反対咬合、上顎歯列弓狭窄、上顎前歯舌側傾斜、顎裂と先天性欠如、顎裂近接歯の位置異常。"><summary><span class="qa-q">口唇口蓋裂の咬合異常5特徴は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q58')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q58')">✓</button></span></summary><div class="answer">骨格性反対咬合、上顎歯列弓狭窄、上顎前歯舌側傾斜、顎裂と先天性欠如、顎裂近接歯の位置異常。</div></details>
+    <details class="qa" id="q59" data-cat="教科書系（A〜E）" data-q="Lundstromが1925年に提唱した理論は？" data-a="歯槽基底論。"><summary><span class="qa-q">Lundstromが1925年に提唱した理論は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q59')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q59')">✓</button></span></summary><div class="answer"><b>歯槽基底論</b>。</div></details>
+    <details class="qa" id="q60" data-cat="教科書系（A〜E）" data-q="顎外固定装置を3つ挙げよ。" data-a="ヘッドギア、上顎前方牽引装置、チンキャップ（オトガイ帽装置）。"><summary><span class="qa-q">顎外固定装置を3つ挙げよ。</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q60')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q60')">✓</button></span></summary><div class="answer">ヘッドギア、上顎前方牽引装置、チンキャップ（オトガイ帽装置）。</div></details>
+    <details class="qa" id="q61" data-cat="教科書系（A〜E）" data-q="インプラント（TAD）による固定の利点と欠点は？" data-a="利点＝固定源が骨と一体化し固定喪失の心配が少ない、患者協力度に依存しにくい。欠点＝植立・撤去に観血処置が必要、周囲の衛生管理が必要。"><summary><span class="qa-q">インプラント（TAD）による固定の利点と欠点は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q61')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q61')">✓</button></span></summary><div class="answer">利点＝固定源が骨と一体化し<b>固定喪失の心配が少ない</b>、患者協力度に依存しにくい。欠点＝植立・撤去に<b>観血処置が必要</b>、周囲の衛生管理が必要。</div></details>
+    <details class="qa" id="q62" data-cat="教科書系（A〜E）" data-q="歯科矯正学2章にあるWHOの定義は何か？" data-a="World Health Organization（世界保健機関）。「すべての人々が可能な最高の健康水準に到達すること」（憲章第1条）を目的とする。"><summary><span class="qa-q">歯科矯正学2章にあるWHOの定義は何か？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q62')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q62')">✓</button></span></summary><div class="answer">World Health Organization（世界保健機関）。「すべての人々が可能な最高の健康水準に到達すること」（憲章第1条）を目的とする。</div></details>
+    <details class="qa" id="q63" data-cat="教科書系（A〜E）" data-q="視床下部から始まるホルモン軸が制御する現象は？（プロフィト4章）" data-a="視床下部→脳下垂体前葉→性腺（精巣・卵巣・副腎）のホルモン軸が第二次性徴の発現と成長スパートを制御する。"><summary><span class="qa-q">視床下部から始まるホルモン軸が制御する現象は？（プロフィト4章）</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q63')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q63')">✓</button></span></summary><div class="answer">視床下部→脳下垂体前葉→性腺（精巣・卵巣・副腎）のホルモン軸が<b>第二次性徴の発現と成長スパート</b>を制御する。</div></details>
+    <details class="qa" id="q64" data-cat="教科書系（A〜E）" data-q="トリーチャーコリンズ症候群の原因は？" data-a="顔の外側の間葉組織（胎生期結合組織）の全体的な欠如。眼の外側と頬骨部の低形成、耳への影響を伴うことがある。"><summary><span class="qa-q">トリーチャーコリンズ症候群の原因は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q64')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q64')">✓</button></span></summary><div class="answer">顔の外側の<b>間葉組織（胎生期結合組織）の全体的な欠如</b>。眼の外側と頬骨部の低形成、耳への影響を伴うことがある。</div></details>
+    <details class="qa" id="q65" data-cat="教科書系（A〜E）" data-q="ヘミフェイシャルミクロソミアの主な原因は？" data-a="胎生の初期段階における神経堤細胞の欠如（かつては鐙骨動脈からの出血が原因と考えられていたが、その後の研究で否定的）。"><summary><span class="qa-q">ヘミフェイシャルミクロソミアの主な原因は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q65')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q65')">✓</button></span></summary><div class="answer">胎生の初期段階における<b>神経堤細胞の欠如</b>（かつては鐙骨動脈からの出血が原因と考えられていたが、その後の研究で否定的）。</div></details>
+    <details class="qa" id="q66" data-cat="教科書系（A〜E）" data-q="大臼歯関係改善の3手法（プロフィト17章）は？" data-a="①顎外力・機能的装置による上下顎骨の成長差の利用②上下の前後的移動量の差の利用③顎間ゴムの利用。"><summary><span class="qa-q">大臼歯関係改善の3手法（プロフィト17章）は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q66')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q66')">✓</button></span></summary><div class="answer">①顎外力・機能的装置による上下顎骨の成長差の利用②上下の前後的移動量の差の利用③顎間ゴムの利用。</div></details>
+    <details class="qa" id="q67" data-cat="教科書系（A〜E）" data-q="抜歯論争の歴史でSpooner（1839）が提唱したことは？" data-a="小臼歯あるいは第一大臼歯4本の抜歯をすすめた。"><summary><span class="qa-q">抜歯論争の歴史でSpooner（1839）が提唱したことは？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q67')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q67')">✓</button></span></summary><div class="answer">小臼歯あるいは第一大臼歯<b>4本の抜歯</b>をすすめた。</div></details>
+    <details class="qa" id="q68" data-cat="教科書系（A〜E）" data-q="治療計画立案でプロフィト7章が強調する2つの回避すべき側面は？" data-a="過小治療（偽陰性）と過剰治療（偽陽性）の両方を避けるように設計すること。"><summary><span class="qa-q">治療計画立案でプロフィト7章が強調する2つの回避すべき側面は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q68')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q68')">✓</button></span></summary><div class="answer"><b>過小治療（偽陰性）</b>と<b>過剰治療（偽陽性）</b>の両方を避けるように設計すること。</div></details>
+    <details class="qa" id="q69" data-cat="教科書系（A〜E）" data-q="ワイヤーの力学特性を示す力・たわみ曲線上の3つのポイントは？" data-a="比例限界、降伏点、（弾性復元をもたらす）弾性限界。ワイヤーは降伏点を超えても臨床的に有効な弾性復元力を示す。"><summary><span class="qa-q">ワイヤーの力学特性を示す力・たわみ曲線上の3つのポイントは？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q69')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q69')">✓</button></span></summary><div class="answer">比例限界、降伏点、（弾性復元をもたらす）弾性限界。ワイヤーは降伏点を超えても臨床的に有効な弾性復元力を示す。</div></details>
+    <details class="qa" id="q70" data-cat="教科書系（A〜E）" data-q="保定の3分類（歯科矯正学19章）は？" data-a="自然的保定、器械的保定、永久的保定。"><summary><span class="qa-q">保定の3分類（歯科矯正学19章）は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q70')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q70')">✓</button></span></summary><div class="answer">自然的保定、器械的保定、永久的保定。</div></details>
+    <details class="qa" id="q71" data-cat="教科書系（A〜E）" data-q="咬合とarticulationの違い（歯科矯正学4章）は？" data-a="かつては下顎が偏心位に滑走している時の歯の接触関係をarticulation（咬合）、閉口時の接触状態をocclusion（咬合）と区別していたが、近年この区別の意義は薄れている。"><summary><span class="qa-q">咬合とarticulationの違い（歯科矯正学4章）は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q71')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q71')">✓</button></span></summary><div class="answer">かつては下顎が偏心位に滑走している時の歯の接触関係を<b>articulation（咬合）</b>、閉口時の接触状態を<b>occlusion（咬合）</b>と区別していたが、近年この区別の意義は薄れている。</div></details>
   </div>
 
   <div class="qa-group">
     <h4>文献10編</h4>
-    <details class="qa"><summary>MBSミニスクリューの初期脱落率は？</summary><div class="answer"><b>7.2%</b>。左側が右側より有意に高い。</div></details>
-    <details class="qa"><summary>フッ素によるWSL予防で特に効果的な投与法は？</summary><div class="answer"><b>局所（トピカル）フッ素塗布</b>。</div></details>
-    <details class="qa"><summary>MOP併用の犬歯遠心移動速度は？</summary><div class="answer">従来法と比較して<b>有意に速い</b>。</div></details>
-    <details class="qa"><summary>OIIRRのCBCT評価での平均吸収量は？</summary><div class="answer"><b>0.79〜0.86mm</b>。臨床的意義は乏しい。</div></details>
-    <details class="qa"><summary>Toffol et al.(2008)のSRが対象とした治療は？</summary><div class="answer">Class III早期整形治療（<b>フェイスマスク・チンキャップ・FR-3</b>）。中〜高品質研究の75%超で治療終了5年後も改善が維持されたと報告。</div></details>
-    <details class="qa"><summary>Becker & Chaushu(2015)がレビューした病因は？</summary><div class="answer"><b>上顎犬歯埋伏</b>の病因。硬組織による閉塞、軟組織病変、隣接歯の異常が主な誘因。</div></details>
-    <details class="qa"><summary>Okeson(2015)のレビューのテーマは？</summary><div class="answer">矯正歯科における<b>咬合とTMD（顎関節症）</b>の考え方の歴史的変遷。</div></details>
-    <details class="qa"><summary>Gadhiya et al.(2025)が検証したのは何か？</summary><div class="answer">臼歯部<b>交叉咬合の早期是正</b>が咀嚼筋活動（表面筋電図）に与える影響。</div></details>
-    <details class="qa"><summary>Barakaat et al.(2025)が比較したのは何か？</summary><div class="answer">顎矯正手術における<b>CAD/CAM製副子と従来型副子</b>の術前計画に対する精度。</div></details>
+    <details class="qa" id="q72" data-cat="文献10編" data-q="MBSミニスクリューの初期脱落率は？" data-a="7.2%。左側が右側より有意に高い。"><summary><span class="qa-q">MBSミニスクリューの初期脱落率は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q72')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q72')">✓</button></span></summary><div class="answer"><b>7.2%</b>。左側が右側より有意に高い。</div></details>
+    <details class="qa" id="q73" data-cat="文献10編" data-q="フッ素によるWSL予防で特に効果的な投与法は？" data-a="局所（トピカル）フッ素塗布。"><summary><span class="qa-q">フッ素によるWSL予防で特に効果的な投与法は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q73')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q73')">✓</button></span></summary><div class="answer"><b>局所（トピカル）フッ素塗布</b>。</div></details>
+    <details class="qa" id="q74" data-cat="文献10編" data-q="MOP併用の犬歯遠心移動速度は？" data-a="従来法と比較して有意に速い。"><summary><span class="qa-q">MOP併用の犬歯遠心移動速度は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q74')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q74')">✓</button></span></summary><div class="answer">従来法と比較して<b>有意に速い</b>。</div></details>
+    <details class="qa" id="q75" data-cat="文献10編" data-q="OIIRRのCBCT評価での平均吸収量は？" data-a="0.79〜0.86mm。臨床的意義は乏しい。"><summary><span class="qa-q">OIIRRのCBCT評価での平均吸収量は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q75')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q75')">✓</button></span></summary><div class="answer"><b>0.79〜0.86mm</b>。臨床的意義は乏しい。</div></details>
+    <details class="qa" id="q76" data-cat="文献10編" data-q="Toffol et al.(2008)のSRが対象とした治療は？" data-a="Class III早期整形治療（フェイスマスク・チンキャップ・FR-3）。中〜高品質研究の75%超で治療終了5年後も改善が維持されたと報告。"><summary><span class="qa-q">Toffol et al.(2008)のSRが対象とした治療は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q76')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q76')">✓</button></span></summary><div class="answer">Class III早期整形治療（<b>フェイスマスク・チンキャップ・FR-3</b>）。中〜高品質研究の75%超で治療終了5年後も改善が維持されたと報告。</div></details>
+    <details class="qa" id="q77" data-cat="文献10編" data-q="Becker &amp; Chaushu(2015)がレビューした病因は？" data-a="上顎犬歯埋伏の病因。硬組織による閉塞、軟組織病変、隣接歯の異常が主な誘因。"><summary><span class="qa-q">Becker & Chaushu(2015)がレビューした病因は？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q77')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q77')">✓</button></span></summary><div class="answer"><b>上顎犬歯埋伏</b>の病因。硬組織による閉塞、軟組織病変、隣接歯の異常が主な誘因。</div></details>
+    <details class="qa" id="q78" data-cat="文献10編" data-q="Okeson(2015)のレビューのテーマは？" data-a="矯正歯科における咬合とTMD（顎関節症）の考え方の歴史的変遷。"><summary><span class="qa-q">Okeson(2015)のレビューのテーマは？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q78')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q78')">✓</button></span></summary><div class="answer">矯正歯科における<b>咬合とTMD（顎関節症）</b>の考え方の歴史的変遷。</div></details>
+    <details class="qa" id="q79" data-cat="文献10編" data-q="Gadhiya et al.(2025)が検証したのは何か？" data-a="臼歯部交叉咬合の早期是正が咀嚼筋活動（表面筋電図）に与える影響。"><summary><span class="qa-q">Gadhiya et al.(2025)が検証したのは何か？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q79')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q79')">✓</button></span></summary><div class="answer">臼歯部<b>交叉咬合の早期是正</b>が咀嚼筋活動（表面筋電図）に与える影響。</div></details>
+    <details class="qa" id="q80" data-cat="文献10編" data-q="Barakaat et al.(2025)が比較したのは何か？" data-a="顎矯正手術におけるCAD/CAM製副子と従来型副子の術前計画に対する精度。"><summary><span class="qa-q">Barakaat et al.(2025)が比較したのは何か？</span><span class="qa-actions"><button type="button" class="icon-btn bm-btn" title="ブックマーク" onclick="toggleBookmark(event,'q80')">☆</button><button type="button" class="icon-btn ck-btn" title="既読チェック" onclick="toggleChecked(event,'q80')">✓</button></span></summary><div class="answer">顎矯正手術における<b>CAD/CAM製副子と従来型副子</b>の術前計画に対する精度。</div></details>
   </div>
 </section>
 
@@ -733,4 +824,180 @@
 
 </main>
 
+<button type="button" class="theme-toggle" id="themeToggle" title="テーマ切替" onclick="toggleTheme()">🌓</button>
+
 <footer>専門医試験対策ノート 2026 ／ 作成日 2026年7月16日</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- Theme toggle (persisted) ---- */
+  var savedTheme = localStorage.getItem("exam2026_theme");
+  if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
+  window.toggleTheme = function(){
+    var cur = document.documentElement.getAttribute("data-theme");
+    var isDark = cur ? cur === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var next = isDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("exam2026_theme", next);
+  };
+
+  /* ---- Bookmark / checked state (persisted) ---- */
+  var STORE_KEY = "exam2026_progress_v1";
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE_KEY) || "{}"); } catch(e){ state = {}; }
+
+  function save(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+  function getEntry(id){ return state[id] || { bookmarked:false, checked:false }; }
+
+  window.toggleBookmark = function(ev, id){
+    ev.preventDefault(); ev.stopPropagation();
+    var entry = getEntry(id);
+    entry.bookmarked = !entry.bookmarked;
+    state[id] = entry;
+    save();
+    renderItemState(id);
+    applyFilters();
+  };
+  window.toggleChecked = function(ev, id){
+    ev.preventDefault(); ev.stopPropagation();
+    var entry = getEntry(id);
+    entry.checked = !entry.checked;
+    state[id] = entry;
+    save();
+    renderItemState(id);
+    updateProgress();
+    applyFilters();
+  };
+
+  function renderItemState(id){
+    var el = document.getElementById(id);
+    if (!el) return;
+    var entry = getEntry(id);
+    var bm = el.querySelector(".bm-btn");
+    var ck = el.querySelector(".ck-btn");
+    if (bm){ bm.classList.toggle("active", entry.bookmarked); bm.textContent = entry.bookmarked ? "★" : "☆"; }
+    if (ck){ ck.classList.toggle("active", entry.checked); }
+  }
+
+  function allQaItems(){ return Array.prototype.slice.call(document.querySelectorAll("details.qa")); }
+
+  function updateProgress(){
+    var items = allQaItems();
+    var total = items.length;
+    var done = items.filter(function(el){ return getEntry(el.id).checked; }).length;
+    var fill = document.getElementById("progressFill");
+    var num = document.getElementById("progressNum");
+    if (fill) fill.style.width = (total ? (done/total*100) : 0) + "%";
+    if (num) num.textContent = done + "/" + total;
+  }
+
+  /* ---- Category chips (built from data-cat) ---- */
+  var activeCat = "all";
+  var bmOnly = false;
+
+  function buildCategoryChips(){
+    var cats = [];
+    allQaItems().forEach(function(el){
+      var c = el.getAttribute("data-cat");
+      if (c && cats.indexOf(c) === -1) cats.push(c);
+    });
+    var row = document.getElementById("catRow");
+    if (!row) return;
+    var html = '<button type="button" class="cat-chip active" data-cat="all" onclick="setCategory(\'all\')">すべて</button>';
+    cats.forEach(function(c){
+      html += '<button type="button" class="cat-chip" data-cat="' + c + '" onclick="setCategory(\'' + c.replace(/'/g, "\\'") + '\')">' + c + '</button>';
+    });
+    row.innerHTML = html;
+  }
+
+  window.setCategory = function(cat){
+    activeCat = cat;
+    document.querySelectorAll(".cat-chip").forEach(function(chip){
+      chip.classList.toggle("active", chip.getAttribute("data-cat") === cat);
+    });
+    applyFilters();
+  };
+
+  window.toggleBmFilter = function(){
+    bmOnly = !bmOnly;
+    var btn = document.getElementById("bmFilterBtn");
+    if (btn) btn.classList.toggle("active", bmOnly);
+    applyFilters();
+  };
+
+  /* ---- Search + filter (question/answer text, category, bookmark) ---- */
+  function highlight(el, query){
+    var qSpan = el.querySelector(".qa-q");
+    var aDiv = el.querySelector(".answer");
+    if (!qSpan || !aDiv) return;
+    var origQ = el.getAttribute("data-q");
+    var origA = el.getAttribute("data-a");
+    if (!query){
+      qSpan.textContent = origQ;
+      // restore original answer HTML by re-reading from a data cache built on load
+      if (el.dataset.answerHtml) aDiv.innerHTML = el.dataset.answerHtml;
+      return;
+    }
+    var esc = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    var re = new RegExp("(" + esc + ")", "gi");
+    qSpan.innerHTML = origQ.replace(re, "<mark>$1</mark>");
+    var baseA = el.dataset.answerHtml || aDiv.innerHTML;
+    // highlight only in plain-text sense: wrap matches in the rendered HTML text nodes minimally by operating on text content
+    aDiv.innerHTML = baseA.replace(re, "<mark>$1</mark>");
+  }
+
+  window.applyFilters = function(){
+    var query = (document.getElementById("qaSearch") || {}).value || "";
+    var qLower = query.trim().toLowerCase();
+    var items = allQaItems();
+    var visibleCount = 0;
+
+    items.forEach(function(el){
+      var cat = el.getAttribute("data-cat");
+      var q = (el.getAttribute("data-q") || "").toLowerCase();
+      var a = (el.getAttribute("data-a") || "").toLowerCase();
+      var entry = getEntry(el.id);
+
+      var matchesCat = (activeCat === "all" || cat === activeCat);
+      var matchesQuery = (!qLower || q.indexOf(qLower) !== -1 || a.indexOf(qLower) !== -1);
+      var matchesBm = (!bmOnly || entry.bookmarked);
+
+      var visible = matchesCat && matchesQuery && matchesBm;
+      el.setAttribute("data-hidden", visible ? "false" : "true");
+      if (visible){
+        visibleCount++;
+        if (qLower) { el.open = true; highlight(el, query.trim()); }
+        else { highlight(el, ""); }
+      } else {
+        highlight(el, "");
+      }
+    });
+
+    // hide empty groups
+    document.querySelectorAll(".qa-group").forEach(function(group){
+      var visibleInGroup = Array.prototype.slice.call(group.querySelectorAll("details.qa"))
+        .some(function(el){ return el.getAttribute("data-hidden") !== "true"; });
+      group.setAttribute("data-empty", visibleInGroup ? "false" : "true");
+    });
+
+    var noRes = document.getElementById("noResults");
+    if (noRes) noRes.style.display = visibleCount === 0 ? "block" : "none";
+  };
+
+  /* ---- Init ---- */
+  document.addEventListener("DOMContentLoaded", function(){
+    allQaItems().forEach(function(el){
+      el.dataset.answerHtml = el.querySelector(".answer").innerHTML;
+      renderItemState(el.id);
+    });
+    buildCategoryChips();
+    updateProgress();
+    applyFilters();
+  });
+})();
+</script>
+
+</body>
+</html>
