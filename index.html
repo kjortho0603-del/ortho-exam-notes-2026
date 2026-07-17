@@ -272,6 +272,35 @@
   details.qa mark{background:var(--warn-soft); color:var(--warn-soft-ink); border-radius:3px; padding:0 2px;}
   .qa-group[data-empty="true"]{display:none;}
 
+  /* ---- Resource list (section 3) ---- */
+  .res-cat{margin:20px 0 10px;}
+  .res-cat h3{margin-bottom:2px;}
+  .res-item{
+    display:flex; gap:12px; align-items:flex-start; background:var(--bg-elevated);
+    border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:8px; box-shadow:var(--shadow);
+  }
+  .res-badges{flex:0 0 auto; display:flex; flex-direction:column; gap:3px; align-items:center; padding-top:1px;}
+  .res-badge{
+    font-size:10.5px; font-weight:800; width:22px; height:22px; border-radius:6px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .res-badge.star{background:var(--accent-soft); color:var(--accent-soft-ink);}
+  .res-badge.dot{background:var(--warn-soft); color:var(--warn-soft-ink);}
+  .res-badge.none{background:var(--bg-sunken); color:var(--ink-faint);}
+  .res-body{flex:1; min-width:0;}
+  .res-title{font-size:13.5px; font-weight:700; margin-bottom:4px; line-height:1.5;}
+  .res-links{display:flex; gap:6px; flex-wrap:wrap;}
+  .res-link{
+    font-size:11.5px; font-weight:700; padding:5px 10px; border-radius:8px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:4px;
+  }
+  .res-link.pdf{background:var(--accent); color:var(--accent-ink);}
+  .res-link.jump{background:var(--bg-sunken); color:var(--ink-muted); border:1px solid var(--border);}
+  .res-link.na{background:var(--bg-sunken); color:var(--ink-faint); cursor:default;}
+  .res-note{font-size:11.5px; color:var(--ink-faint); margin-top:5px; line-height:1.6;}
+  .res-legend{display:flex; gap:14px; flex-wrap:wrap; font-size:11.5px; color:var(--ink-muted); margin:6px 0 16px;}
+  .res-legend span{display:inline-flex; align-items:center; gap:5px;}
+
   ::selection{background:var(--accent-soft); color:var(--accent-soft-ink);}
 </style>
 
@@ -367,14 +396,216 @@
 </section>
 
 <section id="s3">
-  <div class="sec-head"><span class="sec-num">3</span><h2>出題資料チェックリスト</h2></div>
-  <p>教科書2冊（歯科矯正学＝手元は<b>第5版</b>、Contemporary Orthodontics）はいずれも入手済み・全ページOCR化済み（4.8/4.9節に反映）。文献10編は要旨のみ、専門用語集は学会HP公開のみで、いずれも直接出題は想定されていない。</p>
+  <div class="sec-head"><span class="sec-num">3</span><h2>出題資料リスト</h2></div>
+  <p class="lede">sp_examscope_2026.pdfの構成そのまま。★＝今年度出題対象、●＝二重下線あり（特に重要）。PDFリンクは学会・厚労省・機構の公式サイトで実在を確認済みのものだけ。「ノートで見る」から4章の該当箇所へジャンプできる。</p>
+  <div class="res-legend">
+    <span><span class="res-badge star" style="width:18px;height:18px;">★</span>今年度出題対象</span>
+    <span><span class="res-badge dot" style="width:18px;height:18px;">●</span>二重下線あり</span>
+    <span><span class="res-badge none" style="width:18px;height:18px;">－</span>対象外/参考</span>
+  </div>
+
+  <div class="res-cat">
+    <h3>1. 図書</h3>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span></div>
+      <div class="res-body">
+        <div class="res-title">A) 歯科矯正学 第7版（医歯薬出版）</div>
+        <div class="res-links">
+          <a class="res-link jump" href="#sec-48">📖 ノートで見る（4.8）</a>
+          <span class="res-link na">PDF: 市販書籍・著作権保護のためリンクなし</span>
+        </div>
+        <div class="res-note">手元にあるのは第5版。指定は第7版のため章立て・ページがずれている可能性あり。</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge none">－</span></div>
+      <div class="res-body">
+        <div class="res-title">B) Contemporary Orthodontics, 6th Edition（Proffit）</div>
+        <div class="res-links">
+          <a class="res-link jump" href="#sec-49">📖 ノートで見る（4.9）</a>
+          <span class="res-link na">PDF: 市販書籍・著作権保護のためリンクなし</span>
+        </div>
+        <div class="res-note">★マークなし＝今年度の必須指定資料ではない可能性。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="res-cat">
+    <h3>2. 日本矯正歯科学会の定款および関連諸規則</h3>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span></div>
+      <div class="res-body">
+        <div class="res-title">A) 定款</div>
+        <div class="res-links">
+          <a class="res-link pdf" href="https://www.jos.gr.jp/asset/public_utility_rule.pdf" target="_blank" rel="noopener">📄 PDFを開く</a>
+          <a class="res-link jump" href="#sec-41">ノートで見る（4.1）</a>
+        </div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span></div>
+      <div class="res-body">
+        <div class="res-title">B) 矯正歯科専門医制度規則・施行細則</div>
+        <div class="res-links">
+          <a class="res-link pdf" href="https://www.jos.gr.jp/asset/sp_rule.pdf" target="_blank" rel="noopener">📄 規則PDF</a>
+          <a class="res-link pdf" href="https://www.jos.gr.jp/asset/sp_rule_detail.pdf" target="_blank" rel="noopener">📄 施行細則PDF</a>
+          <a class="res-link jump" href="#sec-42">ノートで見る（4.2）</a>
+        </div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span><span class="res-badge dot">●</span></div>
+      <div class="res-body">
+        <div class="res-title">C) 認定研修施設制度規則・施行細則（認定医制度規則・施行細則）</div>
+        <div class="res-links">
+          <a class="res-link pdf" href="https://www.jos.gr.jp/asset/recognition_rule.pdf" target="_blank" rel="noopener">📄 規則PDF</a>
+          <a class="res-link pdf" href="https://www.jos.gr.jp/asset/recognition_detail_rule.pdf" target="_blank" rel="noopener">📄 施行細則PDF</a>
+          <a class="res-link jump" href="#sec-43">ノートで見る（4.3・二重下線確認済み）</a>
+        </div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span><span class="res-badge dot">●</span></div>
+      <div class="res-body">
+        <div class="res-title">D) 倫理規程、倫理審査・懲戒規則</div>
+        <div class="res-links">
+          <a class="res-link pdf" href="https://www.jos.gr.jp/asset/ethics_rule.pdf" target="_blank" rel="noopener">📄 倫理規程PDF</a>
+          <span class="res-link na">倫理審査・懲戒規則：公式サイトに実体ファイル見当たらず</span>
+          <a class="res-link jump" href="#sec-44">ノートで見る（4.4・二重下線確認済み）</a>
+        </div>
+        <div class="res-note">「倫理審査・懲戒規則」は他文書内で言及されるのみで、学会サイト上に単独PDFが見つからない。要問い合わせ。</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span><span class="res-badge dot">●</span></div>
+      <div class="res-body">
+        <div class="res-title">E) 医療広告ガイドライン</div>
+        <div class="res-links">
+          <a class="res-link pdf" href="https://www.mhlw.go.jp/content/001683594.pdf" target="_blank" rel="noopener">📄 PDFを開く（厚労省・最新版）</a>
+          <a class="res-link jump" href="#sec-45">ノートで見る（4.5・二重下線確認済み）</a>
+        </div>
+        <div class="res-note">⚠️公式サイトの現行版は<b>令和8年3月30日最終改正</b>。本ノートの二重下線分析は<b>令和6年9月13日版</b>で実施したもの。改正差分は未確認、要再チェック。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="res-cat">
+    <h3>3. 日本歯科専門医機構関連</h3>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span></div>
+      <div class="res-body">
+        <div class="res-title">A) 歯科専門医機構が認定する専門医の制度設計の基本方針（令和3年5月20日）</div>
+        <div class="res-links">
+          <a class="res-link pdf" href="https://jdsb.or.jp/pdf/seidosekkei_kihonhoushin.pdf" target="_blank" rel="noopener">📄 PDFを開く</a>
+          <a class="res-link jump" href="#sec-46">ノートで見る（4.6）</a>
+        </div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span></div>
+      <div class="res-body">
+        <div class="res-title">B) 歯科専門医制度基本整備指針 Ver1.3（2025.6.24）</div>
+        <div class="res-links">
+          <a class="res-link pdf" href="https://www.jdsb.or.jp/pdf/shika_senmoni_seido_kihon_seibishishin.pdf" target="_blank" rel="noopener">📄 PDFを開く（Ver1.3確認済み）</a>
+          <a class="res-link jump" href="#sec-46">ノートで見る（4.6）</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="res-cat">
+    <h3>4. 矯正歯科治療の診療ガイドライン</h3>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span></div>
+      <div class="res-body">
+        <div class="res-title">A) 矯正歯科治療における標準治療の指針</div>
+        <div class="res-links"><a class="res-link pdf" href="https://www.jos.gr.jp/asset/public2022_0912.pdf" target="_blank" rel="noopener">📄 PDFを開く</a><a class="res-link jump" href="#sec-47">ノートで見る（4.7）</a></div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span></div>
+      <div class="res-body">
+        <div class="res-title">B)（前歯部）開咬編（2023年9月公開）</div>
+        <div class="res-links"><a class="res-link pdf" href="https://www.jos.gr.jp/asset/guideline_open_bite.pdf" target="_blank" rel="noopener">📄 PDFを開く</a><a class="res-link jump" href="#sec-47">ノートで見る（4.7）</a></div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span></div>
+      <div class="res-body">
+        <div class="res-title">C) 上顎前突編（2014年4月公開）</div>
+        <div class="res-links"><a class="res-link pdf" href="https://www.jos.gr.jp/asset/guideline_maxillary_protrusion.pdf" target="_blank" rel="noopener">📄 PDFを開く</a><a class="res-link jump" href="#sec-47">ノートで見る（4.7）</a></div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span></div>
+      <div class="res-body">
+        <div class="res-title">D) 成長期の骨格性下顎前突編（2020年7月公開）</div>
+        <div class="res-links"><a class="res-link pdf" href="https://www.jos.gr.jp/asset/guideline_mandibular_protrusion_growth.pdf" target="_blank" rel="noopener">📄 PDFを開く</a><a class="res-link jump" href="#sec-47">ノートで見る（4.7）</a></div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span></div>
+      <div class="res-body">
+        <div class="res-title">E) 歯科矯正用アンカースクリューガイドライン第二版</div>
+        <div class="res-links"><a class="res-link pdf" href="https://www.jos.gr.jp/asset/anchor_screw_guideline_02.pdf" target="_blank" rel="noopener">📄 PDFを開く</a><a class="res-link jump" href="#sec-47">ノートで見る（4.7）</a></div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span></div>
+      <div class="res-body">
+        <div class="res-title">F) アライナー型矯正装置による治療指針</div>
+        <div class="res-links"><a class="res-link pdf" href="https://www.jos.gr.jp/asset/aligner_pointer.pdf" target="_blank" rel="noopener">📄 PDFを開く</a><a class="res-link jump" href="#sec-47">ノートで見る（4.7）</a></div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge star">★</span></div>
+      <div class="res-body">
+        <div class="res-title">G) ポジションステートメント マウスピース型矯正装置による治療に関する見解</div>
+        <div class="res-links"><a class="res-link pdf" href="https://www.jos.gr.jp/asset/info_20190605.pdf" target="_blank" rel="noopener">📄 PDFを開く</a><a class="res-link jump" href="#sec-47">ノートで見る（4.7）</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="res-cat">
+    <h3>5. 文献（参考・注3）</h3>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge none">参考</span></div>
+      <div class="res-body">
+        <div class="res-title">A〜J) 文献10編（2026 ABO Reading List／CIO誌SR）</div>
+        <div class="res-links"><a class="res-link jump" href="#s6">ノートで見る（6章・要旨まとめ）</a></div>
+        <div class="res-note">原著論文は各出版社サイト（Angle Orthodontist、AJODO、Eur J Orthod、CIO等）で有料公開。直接出題は想定されていない。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="res-cat">
+    <h3>6. 専門用語集（参考・注4）</h3>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge none">参考</span></div>
+      <div class="res-body">
+        <div class="res-title">日本矯正歯科学会 歯科矯正学専門用語集（医歯薬出版）</div>
+        <div class="res-links"><a class="res-link pdf" href="https://www.jos.gr.jp/asset/glossary_2008.pdf" target="_blank" rel="noopener">📄 PDFを開く</a></div>
+        <div class="res-note">直接の出題は想定されていないが、選択肢の用語確認に。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="res-cat">
+    <h3>参考：20点リスト外の関連文書</h3>
+    <div class="res-item">
+      <div class="res-badges"><span class="res-badge none">参考</span></div>
+      <div class="res-body">
+        <div class="res-title">学会ホームページガイドライン（Google Drive内で新規発見）</div>
+        <div class="res-links"><a class="res-link jump" href="#sec-45b">ノートで見る（4.5b）</a></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="s4">
   <div class="sec-head"><span class="sec-num">4</span><h2>資料別 要点まとめ</h2></div>
 
-  <h3>4.1 定款（2A）</h3>
+  <h3 id="sec-41">4.1 定款（2A）</h3>
   <div class="card">
     <ul>
       <li>名称：公益社団法人日本矯正歯科学会。主たる事務所：東京都豊島区。</li>
@@ -385,7 +616,7 @@
     </ul>
   </div>
 
-  <h3>4.2 専門医制度規則・施行細則（2B①②）</h3>
+  <h3 id="sec-42">4.2 専門医制度規則・施行細則（2B①②）</h3>
   <div class="card">
     <ul>
       <li>申請資格：免許後5年以上正会員／常勤で通算5年以上・150症例以上の臨床研修／認定医資格／筆頭論文1編以上。</li>
@@ -395,7 +626,7 @@
     </ul>
   </div>
 
-  <h3>4.3 認定医制度規則・施行細則（2C①②）</h3>
+  <h3 id="sec-43">4.3 認定医制度規則・施行細則（2C①②）</h3>
   <div class="card">
     <span class="flag underline">視覚確認済み・ほぼ全条文が二重下線</span>
     <ul>
@@ -405,7 +636,7 @@
     </ul>
   </div>
 
-  <h3>4.4 倫理規程（2D①）</h3>
+  <h3 id="sec-44">4.4 倫理規程（2D①）</h3>
   <div class="card">
     <span class="flag underline">視覚確認済み・二重下線条文を特定</span>
     <p>全8章・50条構成。実際に二重下線が付されている条文：</p>
@@ -419,7 +650,7 @@
     <p class="lede" style="margin-top:10px;">※旧ノート記載の第16条(IC)・18条(守秘義務)・20/21条(応召義務)・23条(対診)・32条(勧誘)・38条(医療事故)は、実際には二重下線なし（内容は重要だが●印の重点指定ではない）。</p>
   </div>
 
-  <h3>4.5 医療広告ガイドライン（2E）</h3>
+  <h3 id="sec-45">4.5 医療広告ガイドライン（2E）</h3>
   <div class="card">
     <span class="flag underline">視覚確認済み・全42ページ完了</span>
     <ul>
@@ -430,7 +661,7 @@
     </ul>
   </div>
 
-  <h3>4.5b 学会ホームページガイドライン（20点リスト外・新規発見）</h3>
+  <h3 id="sec-45b">4.5b 学会ホームページガイドライン（20点リスト外・新規発見）</h3>
   <div class="card">
     <span class="flag verified">新規発見・2025年8月更新</span>
     <p class="lede">医療広告GL（2E）の上位互換。学会独自の「2階部分」として、厚労省GLより厳しい基準。違反は倫理規定第25・26条＋倫理審査・懲戒規則第10条の対象。</p>
@@ -443,7 +674,7 @@
     </ul>
   </div>
 
-  <h3>4.6 日本歯科専門医機構関連（3A・3B）</h3>
+  <h3 id="sec-46">4.6 日本歯科専門医機構関連（3A・3B）</h3>
   <div class="card">
     <ul>
       <li>歯科専門医の定義：適切な研修教育を受け十分な知識経験を備え、患者から信頼される専門医療を提供できる歯科医師。</li>
@@ -452,7 +683,7 @@
     </ul>
   </div>
 
-  <h3>4.7 診療ガイドライン各種（4A〜4G）</h3>
+  <h3 id="sec-47">4.7 診療ガイドライン各種（4A〜4G）</h3>
   <div class="card">
     <ul>
       <li>4A標準治療の指針／4B開咬編（歯槽性・骨格性の分類）／4C上顎前突編（II級1類が対象）／4D成長期骨格性下顎前突編（4分類、GRADE方式）。</li>
@@ -460,7 +691,7 @@
     </ul>
   </div>
 
-  <h3>4.8 歯科矯正学（第5版）全22章</h3>
+  <h3 id="sec-48">4.8 歯科矯正学（第5版）全22章</h3>
   <p class="lede">出題資料指定は第7版のため章立て・ページのずれに注意。OCR全393ページから実際に読み取った要点。</p>
   <div class="table-scroll">
     <table>
@@ -492,7 +723,7 @@
     </table>
   </div>
 
-  <h3>4.9 プロフィトの現代歯科矯正学 全22章</h3>
+  <h3 id="sec-49">4.9 プロフィトの現代歯科矯正学 全22章</h3>
   <p class="lede">全737ページをOCR化。20章のみ出題配分A〜Gに直接対応する記載なし。</p>
   <div class="table-scroll">
     <table>
