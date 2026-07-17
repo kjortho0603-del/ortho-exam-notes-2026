@@ -1,0 +1,736 @@
+<title>矯正歯科専門医 筆記試験対策ノート 2026</title>
+<style>
+  :root{
+    --bg:#F4F6F6; --bg-elevated:#FFFFFF; --bg-sunken:#EAEEEE;
+    --ink:#1B2430; --ink-muted:#57636F; --ink-faint:#8A96A0;
+    --border:#DCE2E3;
+    --accent:#2D6E71; --accent-ink:#FFFFFF; --accent-soft:#E3EFEE; --accent-soft-ink:#1D4C4E;
+    --warn:#9C6B22; --warn-soft:#FBF1E1; --warn-soft-ink:#7A5419;
+    --danger:#A64B3F; --danger-soft:#F8EAE7; --danger-soft-ink:#8A3C31;
+    --shadow: 0 1px 2px rgba(20,30,35,.06), 0 8px 24px -12px rgba(20,30,35,.18);
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0F1519; --bg-elevated:#161E24; --bg-sunken:#0B1013;
+      --ink:#E7ECEE; --ink-muted:#93A1AB; --ink-faint:#5E6B75;
+      --border:#26313A;
+      --accent:#63B3AE; --accent-ink:#08201F; --accent-soft:#16302E; --accent-soft-ink:#9AD4CF;
+      --warn:#D9A75C; --warn-soft:#2E2417; --warn-soft-ink:#E8C48C;
+      --danger:#D3897B; --danger-soft:#301F1B; --danger-soft-ink:#E6ABA0;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0F1519; --bg-elevated:#161E24; --bg-sunken:#0B1013;
+    --ink:#E7ECEE; --ink-muted:#93A1AB; --ink-faint:#5E6B75;
+    --border:#26313A;
+    --accent:#63B3AE; --accent-ink:#08201F; --accent-soft:#16302E; --accent-soft-ink:#9AD4CF;
+    --warn:#D9A75C; --warn-soft:#2E2417; --warn-soft-ink:#E8C48C;
+    --danger:#D3897B; --danger-soft:#301F1B; --danger-soft-ink:#E6ABA0;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  :root[data-theme="light"]{
+    --bg:#F4F6F6; --bg-elevated:#FFFFFF; --bg-sunken:#EAEEEE;
+    --ink:#1B2430; --ink-muted:#57636F; --ink-faint:#8A96A0;
+    --border:#DCE2E3;
+    --accent:#2D6E71; --accent-ink:#FFFFFF; --accent-soft:#E3EFEE; --accent-soft-ink:#1D4C4E;
+    --warn:#9C6B22; --warn-soft:#FBF1E1; --warn-soft-ink:#7A5419;
+    --danger:#A64B3F; --danger-soft:#F8EAE7; --danger-soft-ink:#8A3C31;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,"Hiragino Sans","Yu Gothic UI","Noto Sans JP",system-ui,sans-serif;
+    line-height:1.8; font-size:16px; -webkit-font-smoothing:antialiased;
+    padding-bottom:64px;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 18px;}
+
+  /* ---- Header ---- */
+  header.hero{
+    background:linear-gradient(180deg, var(--accent-soft), var(--bg) 85%);
+    border-bottom:1px solid var(--border);
+    padding:28px 0 20px;
+  }
+  .eyebrow{
+    font-size:12.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--accent-soft-ink); display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--accent); display:inline-block;}
+  h1.title{
+    font-size:26px; font-weight:800; letter-spacing:-.01em; margin:10px 0 4px; text-wrap:balance;
+    line-height:1.35;
+  }
+  .subtitle{color:var(--ink-muted); font-size:14px; margin:0;}
+
+  .stat-row{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:18px;}
+  .stat{
+    background:var(--bg-elevated); border:1px solid var(--border); border-radius:12px;
+    padding:10px 8px; text-align:center;
+  }
+  .stat .num{font-size:20px; font-weight:800; font-variant-numeric:tabular-nums; color:var(--accent-soft-ink);}
+  .stat .lbl{font-size:11px; color:var(--ink-muted); margin-top:2px;}
+
+  /* ---- Sticky nav ---- */
+  nav.pillnav{
+    position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--border);
+    padding:10px 0;
+  }
+  nav.pillnav .scroller{
+    display:flex; gap:6px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+    padding:0 18px; scrollbar-width:none;
+  }
+  nav.pillnav .scroller::-webkit-scrollbar{display:none;}
+  nav.pillnav a{
+    flex:0 0 auto; font-size:12.5px; font-weight:600; color:var(--ink-muted);
+    background:var(--bg-elevated); border:1px solid var(--border); border-radius:999px;
+    padding:7px 13px; text-decoration:none; white-space:nowrap;
+  }
+  nav.pillnav a:active{background:var(--accent-soft); color:var(--accent-soft-ink); border-color:var(--accent);}
+
+  /* ---- Sections ---- */
+  main{padding-top:6px;}
+  section{padding:34px 0 6px; border-bottom:1px solid var(--border); scroll-margin-top:56px;}
+  section:last-of-type{border-bottom:none;}
+  .sec-head{display:flex; align-items:baseline; gap:10px; margin-bottom:14px;}
+  .sec-num{
+    font-size:13px; font-weight:800; color:var(--accent-ink); background:var(--accent);
+    border-radius:7px; padding:3px 8px; font-variant-numeric:tabular-nums; flex:0 0 auto;
+  }
+  h2{font-size:19px; font-weight:800; margin:0; letter-spacing:-.005em; text-wrap:balance;}
+  h3{font-size:15.5px; font-weight:700; margin:20px 0 8px; color:var(--ink);}
+  h4{font-size:14px; font-weight:700; margin:16px 0 6px; color:var(--accent-soft-ink);}
+  p{margin:0 0 12px;}
+  ul{margin:0 0 14px; padding-left:1.15em;}
+  li{margin-bottom:7px;}
+  .lede{color:var(--ink-muted); font-size:14px; margin-bottom:16px;}
+
+  .card{
+    background:var(--bg-elevated); border:1px solid var(--border); border-radius:var(--radius);
+    padding:16px 16px; margin-bottom:14px; box-shadow:var(--shadow);
+  }
+  .flag{
+    display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700;
+    padding:3px 9px; border-radius:999px; letter-spacing:.02em; margin-bottom:8px;
+  }
+  .flag.verified{background:var(--accent-soft); color:var(--accent-soft-ink);}
+  .flag.underline{background:var(--warn-soft); color:var(--warn-soft-ink);}
+  .flag.gap{background:var(--danger-soft); color:var(--danger-soft-ink);}
+
+  .tag{
+    display:inline-block; font-size:11px; font-weight:700; padding:2px 7px; border-radius:5px;
+    background:var(--bg-sunken); color:var(--ink-muted); margin-right:6px; font-variant-numeric:tabular-nums;
+  }
+  .tag.ag{background:var(--accent-soft); color:var(--accent-soft-ink);}
+
+  .table-scroll{overflow-x:auto; margin:0 0 16px; border:1px solid var(--border); border-radius:12px;}
+  table{border-collapse:collapse; width:100%; font-size:13px; min-width:560px;}
+  thead th{
+    background:var(--bg-sunken); text-align:left; padding:9px 10px; font-weight:700;
+    color:var(--ink-muted); white-space:nowrap; position:sticky; top:0;
+  }
+  tbody td{padding:9px 10px; border-top:1px solid var(--border); vertical-align:top;}
+  tbody tr:nth-child(even){background:var(--bg-sunken);}
+
+  .chapline{border-top:1px dashed var(--border); padding:10px 0;}
+  .chapline:first-child{border-top:none; padding-top:0;}
+  .chapline b{color:var(--ink);}
+  .chapline .meta{color:var(--ink-faint); font-size:12.5px;}
+
+  /* Q&A details */
+  .qa-group h4{margin-top:22px;}
+  details.qa{
+    background:var(--bg-elevated); border:1px solid var(--border); border-radius:11px;
+    margin-bottom:8px; overflow:hidden;
+  }
+  details.qa summary{
+    list-style:none; cursor:pointer; padding:12px 14px; font-weight:600; font-size:14px;
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+  }
+  details.qa summary::-webkit-details-marker{display:none;}
+  details.qa summary::after{
+    content:"開く"; font-size:11.5px; font-weight:700; color:var(--accent); flex:0 0 auto;
+    border:1px solid var(--accent); border-radius:999px; padding:3px 9px;
+  }
+  details.qa[open] summary::after{content:"閉じる";}
+  details.qa .answer{
+    padding:0 14px 14px; color:var(--ink-muted); font-size:13.5px; border-top:1px solid var(--border); padding-top:12px;
+  }
+  details.qa .answer b{color:var(--accent-soft-ink);}
+
+  .final-note{
+    background:var(--warn-soft); color:var(--warn-soft-ink); border-radius:var(--radius);
+    padding:18px; font-size:13.5px; margin:24px 0 40px; line-height:1.75;
+  }
+  .final-note b{display:block; font-size:14.5px; margin-bottom:6px;}
+
+  footer{color:var(--ink-faint); font-size:12px; text-align:center; padding:20px 0 40px;}
+
+  /* ---- At-a-glance overview ---- */
+  .overview{padding:22px 0 8px;}
+  .overview h2.ov-title{font-size:17px; font-weight:800; margin:0 0 4px;}
+  .overview .ov-sub{color:var(--ink-muted); font-size:13px; margin:0 0 18px;}
+
+  .weightchart{display:flex; flex-direction:column; gap:9px; margin-bottom:6px;}
+  .wbar-row{display:flex; align-items:center; gap:10px;}
+  .wbar-label{flex:0 0 108px; font-size:12.5px; font-weight:700; color:var(--ink-muted); text-align:right;}
+  .wbar-label b{color:var(--ink); font-weight:800;}
+  .wbar-track{flex:1; background:var(--bg-sunken); border-radius:6px; height:20px; overflow:hidden; position:relative;}
+  .wbar-fill{height:100%; border-radius:6px; display:flex; align-items:center; justify-content:flex-end; padding-right:7px;}
+  .wbar-fill span{font-size:10.5px; font-weight:800; color:#fff; font-variant-numeric:tabular-nums;}
+  .wbar-fill.tier-core{background:linear-gradient(90deg, var(--accent), var(--accent-soft-ink));}
+  .wbar-fill.tier-mid{background:linear-gradient(90deg, #6C8A88, #587674);}
+
+  .tier-legend{display:grid; grid-template-columns:1fr; gap:10px; margin:18px 0 4px;}
+  .tier{
+    display:flex; gap:11px; align-items:flex-start; background:var(--bg-elevated);
+    border:1px solid var(--border); border-radius:12px; padding:12px 13px; box-shadow:var(--shadow);
+  }
+  .tier .badge{
+    flex:0 0 auto; width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:13px; font-variant-numeric:tabular-nums;
+  }
+  .tier.t1 .badge{background:var(--accent); color:var(--accent-ink);}
+  .tier.t2 .badge{background:var(--warn-soft); color:var(--warn-soft-ink); border:1px solid var(--warn);}
+  .tier.t3 .badge{background:var(--bg-sunken); color:var(--ink-muted); border:1px solid var(--border);}
+  .tier .tier-body b{font-size:13.5px; display:block; margin-bottom:2px;}
+  .tier .tier-body span{font-size:12.5px; color:var(--ink-muted); line-height:1.6;}
+
+  .howto{
+    background:var(--accent-soft); color:var(--accent-soft-ink); border-radius:var(--radius);
+    padding:15px 16px; font-size:13px; margin-top:16px; line-height:1.7;
+  }
+  .howto b{display:block; font-size:13.5px; margin-bottom:4px;}
+
+  ::selection{background:var(--accent-soft); color:var(--accent-soft-ink);}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">2026年度 矯正歯科専門医 筆記試験</div>
+    <h1 class="title">対策まとめノート</h1>
+    <p class="subtitle">出典：sp_examscope_2026.pdf／sp_questiondistribution_2025.pdf 他 学会規則・ガイドライン一式・教科書2冊</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">60/60</div><div class="lbl">到達目標カバー</div></div>
+      <div class="stat"><div class="num">1,130p</div><div class="lbl">教科書OCR済</div></div>
+      <div class="stat"><div class="num">64p</div><div class="lbl">二重下線目視確認</div></div>
+      <div class="stat"><div class="num">80問</div><div class="lbl">セルフチェック</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap overview">
+  <h2 class="ov-title">この試験について——まず全体像</h2>
+  <p class="ov-sub">選択式筆記試験。出題資料に★印がついたものが対象、そのうち二重下線（●）がある4文書は特に重要度が高い。到達目標はA〜Gの7区分に分かれ、配分は下の通り。</p>
+
+  <div class="weightchart">
+    <div class="wbar-row"><div class="wbar-label">G <b>その他必要事項</b></div><div class="wbar-track"><div class="wbar-fill tier-core" style="width:22%"><span>22%</span></div></div></div>
+    <div class="wbar-row"><div class="wbar-label">F <b>臨床倫理</b></div><div class="wbar-track"><div class="wbar-fill tier-core" style="width:18%"><span>18%</span></div></div></div>
+    <div class="wbar-row"><div class="wbar-label">E <b>他分野連携</b></div><div class="wbar-track"><div class="wbar-fill tier-mid" style="width:14%"><span>14%</span></div></div></div>
+    <div class="wbar-row"><div class="wbar-label">A <b>一般生物学</b></div><div class="wbar-track"><div class="wbar-fill tier-mid" style="width:13%"><span>13%</span></div></div></div>
+    <div class="wbar-row"><div class="wbar-label">B <b>矯正学基礎</b></div><div class="wbar-track"><div class="wbar-fill tier-mid" style="width:13%"><span>13%</span></div></div></div>
+    <div class="wbar-row"><div class="wbar-label">C <b>検査・診断</b></div><div class="wbar-track"><div class="wbar-fill tier-mid" style="width:10%"><span>10%</span></div></div></div>
+    <div class="wbar-row"><div class="wbar-label">D <b>治療の基本</b></div><div class="wbar-track"><div class="wbar-fill tier-mid" style="width:10%"><span>10%</span></div></div></div>
+  </div>
+  <p class="ov-sub" style="margin-top:2px;">※濃い色＝F+G（規則・倫理・GL系、合計40%）。教科書の知識（A〜D、46%）より、実は法規・倫理・制度の比重が大きい設計。</p>
+
+  <div class="tier-legend">
+    <div class="tier t1">
+      <div class="badge">★●</div>
+      <div class="tier-body"><b>最優先 — 二重下線を確認済みの4文書</b><span>認定医制度規則・施行細則／倫理規程／医療広告ガイドライン。二重下線部分は全ページ目視で位置を特定済み（4.3〜4.5）。</span></div>
+    </div>
+    <div class="tier t2">
+      <div class="badge">★</div>
+      <div class="tier-body"><b>必須 — ★指定の教科書・規則・ガイドライン</b><span>歯科矯正学第7版（手元は第5版）、定款、専門医制度規則・施行細則、機構関連2文書、診療ガイドライン7本。全て4.1〜4.9で要点化済み。</span></div>
+    </div>
+    <div class="tier t3">
+      <div class="badge">参考</div>
+      <div class="tier-body"><b>補助 — ★指定なしの資料</b><span>Contemporary Orthodontics（プロフィト、★なし）、文献10編、専門用語集。直接出題は想定されていないか、優先度が下がる。</span></div>
+    </div>
+  </div>
+
+  <div class="howto">
+    <b>要確認 ×2（本ノート作成中に判明）</b>
+    ①Contemporary Orthodontics（4.9掲載）には★マークがなく、今年度の必須指定資料ではない可能性がある。歯科矯正学（4.8）を優先すること。
+    ②「倫理審査・懲戒規則」という★指定文書の実体ファイルがDrive内に見当たらない（他文書内で言及されるのみ）。学会に確認が必要。
+  </div>
+</div>
+
+<nav class="pillnav">
+  <div class="scroller">
+    <a href="#s1">1.概要</a><a href="#s2">2.配分</a><a href="#s3">3.資料</a><a href="#s4">4.要点</a>
+    <a href="#s5">5.優先順位</a><a href="#s6">6.文献</a><a href="#s7">7.テーマ横断</a><a href="#s8">8.F/G</a><a href="#s9">9.セルフチェック</a><a href="#s10">10.参考</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="s1">
+  <div class="sec-head"><span class="sec-num">1</span><h2>試験概要</h2></div>
+  <ul>
+    <li>出題形式：選択式筆記試験（専門医制度施行細則 第6条）。内容は「医療法等法令、他分野連携が必要な治療の理解と実践、感染対策・医療安全、倫理的配慮（HP含む）、最新矯正機器の安全性」の5テーマ。</li>
+    <li>出題範囲：2026年度は★印がついた資料が対象。教科書2冊＋学会関連規則一式＋機構関連文書＋診療ガイドライン7本＋文献10編が範囲。</li>
+    <li>●印＝重要項目に二重下線がある資料：認定医制度規則・施行細則／倫理規定／医療広告ガイドラインの3種4文書。専門医制度規則・施行細則と定款には二重下線指定なし＝全体をまんべんなく押さえる。</li>
+    <li>症例審査（5課題症例＋口頭試問）は別建て。本ノートは筆記試験（法規・倫理・制度系＋教科書）対策に特化。</li>
+  </ul>
+</section>
+
+<section id="s2">
+  <div class="sec-head"><span class="sec-num">2</span><h2>到達目標別 出題配分</h2></div>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>区分</th><th>到達目標エリア</th><th>配分</th><th>対応資料</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag ag">A</span></td><td>一般生物学と隣接医学の理解</td><td>13%</td><td>教科書（基礎医学系章）</td></tr>
+        <tr><td><span class="tag ag">B</span></td><td>歯科矯正学の基礎領域の理解</td><td>13%</td><td>教科書（成長発育・生体反応）</td></tr>
+        <tr><td><span class="tag ag">C</span></td><td>診察・検査・診断および治療計画</td><td>10%</td><td>教科書＋アンカースクリューGL</td></tr>
+        <tr><td><span class="tag ag">D</span></td><td>治療の基本的事項の理解と実践</td><td>10%</td><td>教科書＋各種診療ガイドライン</td></tr>
+        <tr><td><span class="tag ag">E</span></td><td>他の分野との連携の理解と実践</td><td>14%</td><td>教科書（顎変形症・口蓋裂）</td></tr>
+        <tr><td><span class="tag ag">F</span></td><td>臨床マネジメント・倫理</td><td>18%</td><td>倫理規程／医療広告GL</td></tr>
+        <tr><td><span class="tag ag">G</span></td><td>その他必要事項（定款・規則・GL等）</td><td>22%</td><td>定款／専門医・認定医規則／診療GL</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="lede">★ポイント：F＋G＝合計40%。教科書の生物学・臨床技術系（A〜D）より、実は法規・倫理・制度系の比重が大きい設計。</p>
+</section>
+
+<section id="s3">
+  <div class="sec-head"><span class="sec-num">3</span><h2>出題資料チェックリスト</h2></div>
+  <p>教科書2冊（歯科矯正学＝手元は<b>第5版</b>、Contemporary Orthodontics）はいずれも入手済み・全ページOCR化済み（4.8/4.9節に反映）。文献10編は要旨のみ、専門用語集は学会HP公開のみで、いずれも直接出題は想定されていない。</p>
+</section>
+
+<section id="s4">
+  <div class="sec-head"><span class="sec-num">4</span><h2>資料別 要点まとめ</h2></div>
+
+  <h3>4.1 定款（2A）</h3>
+  <div class="card">
+    <ul>
+      <li>名称：公益社団法人日本矯正歯科学会。主たる事務所：東京都豊島区。</li>
+      <li>社員＝正会員から選出された代議員200〜250名（2年に1度選挙）。</li>
+      <li>特別決議（除名・監事解任・定款変更・解散）＝総代議員の半数以上出席＋議決権の2/3以上。</li>
+      <li>役員：理事15〜20名（うち理事長1名、常務理事5名以内）、監事2〜3名。役員は無報酬。</li>
+      <li>事業年度：毎年1月1日〜12月31日。</li>
+    </ul>
+  </div>
+
+  <h3>4.2 専門医制度規則・施行細則（2B①②）</h3>
+  <div class="card">
+    <ul>
+      <li>申請資格：免許後5年以上正会員／常勤で通算5年以上・150症例以上の臨床研修／認定医資格／筆頭論文1編以上。</li>
+      <li>更新は5年毎。専門医共通研修10単位以上（5区分各1単位以上を含む）／専門領域研修50単位以上／学術活動10単位以上。</li>
+      <li>常勤の定義：週3日以上・年220日以上・年1320時間以上勤務。</li>
+      <li>研修指導医の要件：正会員12年以上／学術活動50単位以上／指定医療機関に常勤。</li>
+    </ul>
+  </div>
+
+  <h3>4.3 認定医制度規則・施行細則（2C①②）</h3>
+  <div class="card">
+    <span class="flag underline">視覚確認済み・ほぼ全条文が二重下線</span>
+    <ul>
+      <li>専門医の前段階。5年毎更新、3回目以降は臨床報告要件が免除。</li>
+      <li>特例（第15条）：専門医の資格取得・更新をもって、認定医の更新も行ったものとみなす（二重申請不要）。</li>
+      <li>規則・施行細則とも条文本体はほぼ全て二重下線＝章見出しや一部手続き条項を除きほぼ全条文が対象。</li>
+    </ul>
+  </div>
+
+  <h3>4.4 倫理規程（2D①）</h3>
+  <div class="card">
+    <span class="flag underline">視覚確認済み・二重下線条文を特定</span>
+    <p>全8章・50条構成。実際に二重下線が付されている条文：</p>
+    <div class="chapline"><b>前文</b> — 倫理規程は団体の内部規制として最高基準であるべき、という位置づけ。</div>
+    <div class="chapline"><b>第5条（法令・規則等の遵守）</b> — 条文全体。我国の法令・学会の定款規程規則綱領等の遵守。</div>
+    <div class="chapline"><b>第25条（広告・宣伝・HP掲載）2・3項</b> — 医療法の範囲内、虚偽誇大の禁止、品位を損なわない。</div>
+    <div class="chapline"><b>第26条3項</b> — 薬事未承認の薬物等の広告禁止。</div>
+    <div class="chapline"><b>第35条（転医）</b> — 条文全体。装置変更理由・加算料金の説明。</div>
+    <div class="chapline"><b>第39・40条（情報発信）</b> — 学問的根拠に基づく公正な情報提供、自己宣伝の抑制。</div>
+    <div class="chapline"><b>5〜7章 認定医・専門医・指導医各条項</b> — (2)(4)(5)(6)系の項目（品位保持・信頼影響認識・規則遵守等）が二重下線、(1)(3)は下線なし。</div>
+    <p class="lede" style="margin-top:10px;">※旧ノート記載の第16条(IC)・18条(守秘義務)・20/21条(応召義務)・23条(対診)・32条(勧誘)・38条(医療事故)は、実際には二重下線なし（内容は重要だが●印の重点指定ではない）。</p>
+  </div>
+
+  <h3>4.5 医療広告ガイドライン（2E）</h3>
+  <div class="card">
+    <span class="flag underline">視覚確認済み・全42ページ完了</span>
+    <ul>
+      <li>禁止される広告8類型：虚偽広告／比較優良広告／誇大広告／公序良俗違反／広告可能事項以外／体験談／誤認前後写真／その他。</li>
+      <li>第1〜3（規制趣旨・禁止8類型）と第4（広告可能15号）はほぼ全文二重下線。特に医師等氏名略歴・専門性資格の広告可否（9号）は密に二重下線。</li>
+      <li>第6（相談指導体制）と別添1〜3（届出様式）はほぼ二重下線なし＝実務手続き部分は重要度が低い。</li>
+      <li>罰則：6月以下の懲役又は30万円以下の罰金（法87条1号）／20万円以下の罰金（法89条2号）＝数字部分も二重下線。</li>
+    </ul>
+  </div>
+
+  <h3>4.5b 学会ホームページガイドライン（20点リスト外・新規発見）</h3>
+  <div class="card">
+    <span class="flag verified">新規発見・2025年8月更新</span>
+    <p class="lede">医療広告GL（2E）の上位互換。学会独自の「2階部分」として、厚労省GLより厳しい基準。違反は倫理規定第25・26条＋倫理審査・懲戒規則第10条の対象。</p>
+    <ul>
+      <li>学会認定資格は過度な強調なく掲載可。資格喪失後は速やかに削除。研究会・スタディグループの独自認定は掲載不可。</li>
+      <li>治療法・装置名は学術用語集の用語か一般名称を使用。紛らわしい表現は併記（例：インプラント矯正→歯科矯正用アンカースクリューを用いた矯正歯科治療）。</li>
+      <li>学術的に不適切な用語は掲載不可：<b>ブライダル矯正・スピード矯正・プチ矯正</b>等。</li>
+      <li>根拠のない表現の禁止：<b>100%・99%・絶対・確実</b>等。</li>
+      <li>治療費：低価格・キャンペーン価格・期間限定価格等の表現は不可。</li>
+    </ul>
+  </div>
+
+  <h3>4.6 日本歯科専門医機構関連（3A・3B）</h3>
+  <div class="card">
+    <ul>
+      <li>歯科専門医の定義：適切な研修教育を受け十分な知識経験を備え、患者から信頼される専門医療を提供できる歯科医師。</li>
+      <li>基本理念5項目：①プロフェッショナルオートノミー②受診先選択の指標③国民への認知④中長期的医療向上⑤地域医療配慮。</li>
+      <li>専門医共通研修5区分：①医療倫理②患者・医療者関係の構築③医療安全④院内感染対策⑤医療関連法規・医療経済。③には具体的にヒューマンエラー・スイスチーズモデル・PDCAサイクル・JRC蘇生ガイドラインが、④には標準予防策・滅菌消毒・耐性菌対策が含まれる。</li>
+    </ul>
+  </div>
+
+  <h3>4.7 診療ガイドライン各種（4A〜4G）</h3>
+  <div class="card">
+    <ul>
+      <li>4A標準治療の指針／4B開咬編（歯槽性・骨格性の分類）／4C上顎前突編（II級1類が対象）／4D成長期骨格性下顎前突編（4分類、GRADE方式）。</li>
+      <li>4Eアンカースクリューガイドライン第二版（植立部位・術式・固定メカニクス・リスク対策・保険導入まで）／4Fアライナー治療指針／4Gマウスピース型ポジションステートメント。</li>
+    </ul>
+  </div>
+
+  <h3>4.8 歯科矯正学（第5版）全22章</h3>
+  <p class="lede">出題資料指定は第7版のため章立て・ページのずれに注意。OCR全393ページから実際に読み取った要点。</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>章</th><th>タイトル</th><th>区分</th><th>要点</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>歯科矯正学の歩みと定義</td><td><span class="tag ag">F</span></td><td>Need と Demand、Angle・Tweed等の系譜、学会設立史（米1901・欧1907・日1926）</td></tr>
+        <tr><td>2</td><td>治療の意義と目的</td><td><span class="tag ag">B</span></td><td>不正咬合の障害からQOL向上を目的と位置づけ</td></tr>
+        <tr><td>3</td><td>成長発育</td><td><span class="tag ag">A・B</span></td><td>成長・発育の定義、頭蓋顎顔面の発生、口腔機能発達</td></tr>
+        <tr><td>4</td><td>咬合</td><td><span class="tag ag">B</span></td><td>Angle分類を含む正常咬合の概念と評価法</td></tr>
+        <tr><td>5</td><td>不正咬合の原因</td><td><span class="tag ag">A・B</span></td><td>複数因子の組合せ、遺伝的/環境的・先天的/後天的分類</td></tr>
+        <tr><td>6</td><td>不正咬合の予防</td><td><span class="tag ag">F</span></td><td>予防矯正と抑制矯正の区別</td></tr>
+        <tr><td>7</td><td>生体反応</td><td><span class="tag ag">B</span></td><td>全身的反応と局所的反応（歯・歯周組織、顎骨）</td></tr>
+        <tr><td>8</td><td>診断</td><td><span class="tag ag">C</span></td><td>矯正医の基本的責務4点</td></tr>
+        <tr><td>9</td><td>検査</td><td><span class="tag ag">C</span></td><td>形態的検査と機能検査の体系</td></tr>
+        <tr><td>10</td><td>抜歯</td><td><span class="tag ag">C・D</span></td><td>Hunter〜Farrarの歴史、Lundstromの歯槽基底論(1925)</td></tr>
+        <tr><td>11</td><td>治療方針の立案</td><td><span class="tag ag">C</span></td><td>咬合異常の分類・顔貌評価から治療計画へ</td></tr>
+        <tr><td>12</td><td>治療学概論</td><td><span class="tag ag">D</span></td><td>予防/抑制/限局/本格矯正の4区分</td></tr>
+        <tr><td>13</td><td>矯正力</td><td><span class="tag ag">D</span></td><td>矯正力（器械的/機能的）と顎整形力の区別</td></tr>
+        <tr><td>14</td><td>固定 <b>★重点</b></td><td><span class="tag ag">D</span></td><td>顎間ゴム4種・顎外固定・インプラント固定・抵抗性質5分類（単純/不動/相反/加強/準備固定）・抜歯空隙3分類</td></tr>
+        <tr><td>15</td><td>矯正用材料</td><td><span class="tag ag">D</span></td><td>線材料の機械的特性、接着剤の特性・機構</td></tr>
+        <tr><td>16</td><td>矯正装置</td><td><span class="tag ag">D</span></td><td>可撤式/固定式/機能的/顎外固定装置の分類</td></tr>
+        <tr><td>17</td><td>乳歯列・混合歯列期の治療</td><td><span class="tag ag">D</span></td><td>症例17-1〜17-8（反対咬合〜過蓋咬合）</td></tr>
+        <tr><td>18</td><td>永久歯列期の治療</td><td><span class="tag ag">D</span></td><td>オーバージェット6mm基準（外傷リスク約30%）</td></tr>
+        <tr><td>19</td><td>保定</td><td><span class="tag ag">D</span></td><td>自然的・器械的・永久的保定の3分類</td></tr>
+        <tr><td>20</td><td>他科との協同治療</td><td><span class="tag ag">E</span></td><td>口唇口蓋裂の5特徴、症例20-1〜20-4</td></tr>
+        <tr><td>21</td><td>口腔衛生管理</td><td><span class="tag ag">F</span></td><td>治療期間3〜5年に伴う齲蝕・歯周疾患リスク</td></tr>
+        <tr><td>22</td><td>偶発症</td><td><span class="tag ag">F</span></td><td>歯根吸収・齲蝕・歯周組織傷害・顎関節症等</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>4.9 プロフィトの現代歯科矯正学 全22章</h3>
+  <p class="lede">全737ページをOCR化。20章のみ出題配分A〜Gに直接対応する記載なし。</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>章</th><th>タイトル</th><th>区分</th><th>要点</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>咬合異常と歯・顔の形態異常</td><td><span class="tag ag">F</span></td><td>Angle分類4区分の再整理</td></tr>
+        <tr><td>2</td><td>成長・発育の概念</td><td><span class="tag ag">A・B</span></td><td>成長パターン・変動性・タイミングの概念</td></tr>
+        <tr><td>3</td><td>早期の発育段階</td><td><span class="tag ag">A</span></td><td>トリーチャーコリンズ症候群・ヘミフェイシャルミクロソミア</td></tr>
+        <tr><td>4</td><td>後期の発育段階</td><td><span class="tag ag">A・B</span></td><td>視床下部〜性腺のホルモン軸による成長スパート制御</td></tr>
+        <tr><td>5</td><td>諸問題の病因</td><td><span class="tag ag">A</span></td><td>先天性症候群による顎顔面形態異常</td></tr>
+        <tr><td>6</td><td>矯正診断：問題リスト</td><td><span class="tag ag">C</span></td><td>問診票3カテゴリー（病歴/成長/動機）</td></tr>
+        <tr><td>7</td><td>治療計画の立案</td><td><span class="tag ag">C</span></td><td>過小・過剰治療双方を避ける設計思想</td></tr>
+        <tr><td>8</td><td>治療計画の限界・論争</td><td><span class="tag ag">C・D</span></td><td>抜歯基準（4mm/5-9mm/10mm）、大抜歯論争</td></tr>
+        <tr><td>9</td><td>生物学的基礎</td><td><span class="tag ag">B</span></td><td>歯根膜・骨反応、固定の定義、成長の一時変異</td></tr>
+        <tr><td>10</td><td>力学的原理</td><td><span class="tag ag">D</span></td><td>力・たわみ曲線（比例限界/降伏点/弾性復元）</td></tr>
+        <tr><td>11</td><td>可撤式装置</td><td><span class="tag ag">D</span></td><td>利点（着脱可能）と欠点（協力度依存）</td></tr>
+        <tr><td>12</td><td>固定式装置</td><td><span class="tag ag">D</span></td><td>ストレートワイヤー、アンギュレーション・トーク規格</td></tr>
+        <tr><td>13</td><td>中程度の非骨格性問題の治療</td><td><span class="tag ag">D</span></td><td>バンド＆ループ保隙装置</td></tr>
+        <tr><td>14</td><td>複雑な非骨格性問題の治療</td><td><span class="tag ag">D</span></td><td>リンガルアーチによる加強固定</td></tr>
+        <tr><td>15</td><td>骨格性の問題の治療</td><td><span class="tag ag">D・E</span></td><td>サービカルヘッドギア等の成長の一時変異</td></tr>
+        <tr><td>16-18</td><td>包括矯正治療 3段階</td><td><span class="tag ag">D</span></td><td>排列/大臼歯関係改善/仕上げ、ワイヤー装着順序表</td></tr>
+        <tr><td>19</td><td>保定</td><td><span class="tag ag">D</span></td><td>再発リスクと成長継続の関係、治療期間18〜30か月</td></tr>
+        <tr><td>20</td><td>成人の補助的治療</td><td>G寄り</td><td>データ収集2ステップ、全顎デンタルX線</td></tr>
+        <tr><td>21</td><td>成人の包括矯正治療</td><td><span class="tag ag">F</span></td><td>成人特有の治療動機</td></tr>
+        <tr><td>22</td><td>外科的矯正歯科治療</td><td><span class="tag ag">E</span></td><td>手術は統合治療の一部</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="s5">
+  <div class="sec-head"><span class="sec-num">5</span><h2>学習の優先順位</h2></div>
+  <ul>
+    <li><b>① 最優先</b>：F＋G区分（40%）＝定款／専門医・認定医制度規則・施行細則／倫理規程／医療広告GL／診療GL群。●印4文書は二重下線部分を実際にPDFで確認しながら精読。</li>
+    <li><b>② 次点</b>：E区分（14%）＝他科連携が必要な不正咬合。教科書の該当章＋4B〜4Dを併読。</li>
+    <li><b>③ A・B区分</b>（各13%）：教科書中心の基礎医学・矯正学基礎。</li>
+    <li><b>④ C・D区分</b>（各10%）：検査診断・治療メカニクス章＋4Eガイドライン。</li>
+    <li><b>⑤ 仕上げ</b>：文献10編＋専門用語集で用語確認。</li>
+  </ul>
+</section>
+
+<section id="s6">
+  <div class="sec-head"><span class="sec-num">6</span><h2>文献10編 要旨</h2></div>
+  <div class="card">
+    <div class="chapline"><b>① Toffol L, et al. (2008)</b> <span class="meta">Angle Orthod 78(3):561-73</span> — Class III早期整形治療SR。5年後も改善維持。</div>
+    <div class="chapline"><b>② Samandara A, et al. (2019)</b> <span class="meta">Eur J Orthod 41(1):67-79</span> — OIIRRのCBCT評価。平均吸収量0.79〜0.86mm。</div>
+    <div class="chapline"><b>③ Chang C, et al. (2015)</b> <span class="meta">Angle Orthod 85(6):905-10</span> — MBSミニスクリュー脱落率7.2%。</div>
+    <div class="chapline"><b>④ Becker A, Chaushu S. (2015)</b> <span class="meta">AJODO 148(4):557-567</span> — 上顎犬歯埋伏の病因レビュー。</div>
+    <div class="chapline"><b>⑤ Okeson JP. (2015)</b> <span class="meta">AJODO 147(5 Suppl):S216-223</span> — 咬合とTMDの歴史的変遷。</div>
+    <div class="chapline"><b>⑥ Gadhiya N, et al. (2025)</b> <span class="meta">CIO 84(3):155-173</span> — 交叉咬合是正と咀嚼筋活動。</div>
+    <div class="chapline"><b>⑦ Dutta S, et al. (2025)</b> <span class="meta">CIO 84(2):77-92</span> — 振動デバイスの効果は結論不明確。</div>
+    <div class="chapline"><b>⑧ Barakaat A, et al. (2025)</b> <span class="meta">CIO 84(1):1-10</span> — CAD/CAM副子と従来型副子の精度比較。</div>
+    <div class="chapline"><b>⑨ Jamlooa H, et al. (2024)</b> <span class="meta">CIO 83(2):53-60</span> — フッ素WSL予防、局所塗布が効果的。</div>
+    <div class="chapline"><b>⑩ Idrees W, et al. (2024)</b> <span class="meta">CIO 83(1):1-6</span> — MOP併用で犬歯移動速度が有意に速い。</div>
+  </div>
+</section>
+
+<section id="s7">
+  <div class="sec-head"><span class="sec-num">7</span><h2>到達目標別 テーマ横断まとめ（A〜E）</h2></div>
+  <p class="lede">章ごとではなく、試験の到達目標の並びに沿って両教科書を横断したまとめ。</p>
+
+  <h3><span class="tag ag">A</span> 一般生物学と隣接医学の理解（13%）</h3>
+  <div class="card">
+    <ul>
+      <li><b>A1-2 細胞生物学・遺伝学</b>：教科書2冊とも体系的な章はない。一般知識で補う必要あり。</li>
+      <li><b>A3-4 頭蓋顔面解剖・発生</b>：プロフィト3章＝トリーチャーコリンズ症候群、ヘミフェイシャルミクロソミア（神経堤細胞の欠如）。</li>
+      <li><b>A5-6 組織学</b>：歯科矯正学7章の歯周組織、プロフィト9章の歯根膜。</li>
+      <li><b>A7 骨代謝</b>：破骨細胞（血液幹細胞由来）、RANKL・M-CSF・TGF-β等の調節因子。</li>
+      <li><b>A8 隣接医学疾患</b>：顎関節症が散発的に言及。</li>
+      <li><b>A9 社会心理学的影響</b>：プロフィト1章の文化横断研究（歯並びの社会的評価は文化差が小さい）。</li>
+    </ul>
+  </div>
+
+  <h3><span class="tag ag">B</span> 歯科矯正学の基礎領域の理解（13%）</h3>
+  <div class="card">
+    <ul>
+      <li><b>B1 治療目的</b>：QOL向上。</li>
+      <li><b>B2 成長発育</b>：成長・発育の定義、胎生3か月で頭部が身長の約50%、内分泌系による成長スパート制御。</li>
+      <li><b>B3 口腔機能発達</b>：咀嚼・嚥下・発音の発達過程。</li>
+      <li><b>B4 正常咬合</b>：Angle分類を含む評価法。</li>
+      <li><b>B5 原因・予防</b>：複数因子の組合せ、予防矯正/抑制矯正、先天性症候群。</li>
+      <li><b>B6-7 生体反応</b>：力の大きさ・分布・作用期間、固定のコントロール、成長の一時変異。</li>
+      <li><b>B8 留意点</b>：矯正力の為害作用（動揺・疼痛、歯髄・歯根への影響）。</li>
+      <li><b>B9 材料特性</b>：線材料の機械的特性、力学的原理、規格表。</li>
+    </ul>
+  </div>
+
+  <h3><span class="tag ag">C</span> 診察・検査・診断・治療計画（10%）</h3>
+  <div class="card">
+    <ul>
+      <li><b>C1-2 医療面接</b>：責務4点、問診票3カテゴリー。</li>
+      <li><b>C3 検査の意義</b>：客観的情報として診断治療に役立たせる手段。</li>
+      <li><b>C4-8 各種検査</b>：全身/顔面写真/口腔内写真/模型/画像/セファロの体系。</li>
+      <li><b>C9 機能検査</b>：下顎運動・筋機能・咀嚼・咬合・嚥下・発音の6種。</li>
+      <li><b>C10 抜歯</b>：Hunter〜Farrarの歴史、歯槽基底論、抜歯基準（4mm/5-9mm/10mm）。</li>
+      <li><b>C11 治療計画立案</b>：過小・過剰治療双方を避ける設計思想。</li>
+    </ul>
+  </div>
+
+  <h3><span class="tag ag">D</span> 治療の基本的事項（10%）</h3>
+  <div class="card">
+    <span class="flag verified">本文精読済み・重点項目</span>
+    <ul>
+      <li><b>D1 治療の流れ</b>：予防/抑制/限局/本格矯正の4区分。</li>
+      <li><b>D2 治療メカニクスと固定</b>：顎間ゴム4種、顎外固定、インプラント固定、抵抗性質5分類（単純/不動/相反/加強/準備固定）、抜歯空隙3分類（最小/中等度/最大）、直接固定法と間接固定法。</li>
+      <li><b>D3 器械・器具</b>：線材料・バンド材料・ブラケット等。</li>
+      <li><b>D4-5 矯正装置</b>：可撤式/固定式の利点欠点。</li>
+      <li><b>D6-7 マルチブラケット装置</b>：規格表、包括矯正治療3段階。</li>
+      <li><b>D8-9 保定</b>：3分類、再発リスクと成長継続の関係。</li>
+      <li><b>D10-11 評価・症例報告</b>：専用章なし、11章・19章を組み合わせて対応。</li>
+    </ul>
+  </div>
+
+  <h3><span class="tag ag">E</span> 他の分野との連携（14%）</h3>
+  <div class="card">
+    <ul>
+      <li><b>E1 連携判断</b>：口唇口蓋裂／顎変形症／顎関節症／その他の4区分。</li>
+      <li><b>E2 唇顎口蓋裂</b>：咬合異常5特徴。</li>
+      <li><b>E3 顎変形症</b>：成長の一時変異、外科手術は統合治療の一部。</li>
+      <li><b>E4 その他他科連携</b>：顎関節症、歯周病による咬合崩壊。</li>
+    </ul>
+  </div>
+</section>
+
+<section id="s8">
+  <div class="sec-head"><span class="sec-num">8</span><h2>F・G の出典確認と未カバー項目</h2></div>
+  <p class="lede">再確認の結果、当初「資料なし」としていた項目の多くは3B・倫理規程に実際の記述があった（見落としを訂正）。</p>
+
+  <h3><span class="tag ag">F</span> 臨床マネジメントと倫理（18%）</h3>
+  <div class="card">
+    <div class="chapline"><b>F1 医療安全・院内感染対策</b> — 3B専門医共通研修③④に詳細（ヒューマンエラー・PDCA・標準予防策・耐性菌対策）。</div>
+    <div class="chapline"><b>F2-F4</b> — 歯科矯正学21〜22章でカバー。</div>
+    <div class="chapline"><b>F5 公衆衛生</b> — 倫理規程第41条。</div>
+    <div class="chapline"><b>F6 保険制度</b> — 倫理規程第42条、3B⑤医療関連法規・医療経済。</div>
+    <div class="chapline"><b>F7 医の倫理</b> — 倫理規程で厚くカバー。</div>
+    <div class="chapline"><b>F8 研究倫理</b> — 倫理規程2章「研究活動」第8〜11条。</div>
+  </div>
+
+  <h3><span class="tag ag">G</span> その他、必要事項（22%）</h3>
+  <div class="card">
+    <div class="chapline"><b>G1 歴史</b> — 歯科矯正学1章。</div>
+    <div class="chapline"><b>G2 生涯学習</b> — 倫理規程第2条、3B④学術的姿勢。</div>
+    <div class="chapline"><b>G3 専門医機構制度</b> — 3A・3B。</div>
+    <div class="chapline"><b>G4 研究の遂行・発表</b> — 倫理規程2章「研究活動」。</div>
+    <div class="chapline"><span class="flag gap">資料なし</span><br><b>G5 統計学と実験計画法</b> — どの出題資料にも体系的な記述が存在しない唯一の項目。一般的な医学統計の知識で備える必要あり。</div>
+    <div class="chapline"><b>G6-G8</b> — 定款・規則（4.1-4.2）／診療GL（4.7）／広告GL（4.5）でカバー。</div>
+  </div>
+</section>
+
+<section id="s9">
+  <div class="sec-head"><span class="sec-num">9</span><h2>想定問題・セルフチェック（全80問）</h2></div>
+  <p class="lede">過去問がないため、本ノート内で確認済みの記述だけを使った自作の一問一答。各問題の質問部分をタップすると解答が開く。</p>
+
+  <div class="qa-group">
+    <h4>規則・制度系</h4>
+    <details class="qa"><summary>学会の正式名称と主たる事務所の所在地は？</summary><div class="answer">公益社団法人日本矯正歯科学会。主たる事務所：<b>東京都豊島区</b>。</div></details>
+    <details class="qa"><summary>社員（代議員）の人数と改選周期は？</summary><div class="answer"><b>200〜250名</b>、2年に1度選挙。</div></details>
+    <details class="qa"><summary>定時総会の特別決議に必要な要件は？</summary><div class="answer">総代議員の<b>半数以上出席＋議決権の2/3以上</b>。</div></details>
+    <details class="qa"><summary>専門医の常勤臨床研修は通算何年以上・何症例以上？</summary><div class="answer">通算<b>5年以上・150症例以上</b>。</div></details>
+    <details class="qa"><summary>「常勤」の定義（週・年間日数・年間時間）は？</summary><div class="answer">週<b>3日以上</b>・年<b>220日以上</b>・年<b>1320時間以上</b>。</div></details>
+    <details class="qa"><summary>認定医の更新は何年毎か。3回目以降で免除される要件は？</summary><div class="answer"><b>5年毎</b>。臨床報告の要件が免除され、専門領域研修単位のみで可。</div></details>
+    <details class="qa"><summary>専門医資格の取得・更新をもって、認定医資格はどう扱われるか？</summary><div class="answer">同時に<b>認定医の更新も行ったものとみなされる</b>（第15条、二重申請不要）。</div></details>
+    <details class="qa"><summary>倫理規程 第41条の内容は？</summary><div class="answer"><b>公衆衛生</b>の向上への協力、保健活動への協力を惜しんではならない。</div></details>
+    <details class="qa"><summary>倫理規程 第42条の内容は？</summary><div class="answer"><b>医療保険・介護保険制度</b>が健全に構築されるよう協力。保険診療の適切な実施、不正行為の禁止。</div></details>
+    <details class="qa"><summary>【二重下線】倫理規程 第5条は？</summary><div class="answer">我国の<b>法令</b>、学会の<b>定款・規程・規則・綱領等の遵守</b>。</div></details>
+    <details class="qa"><summary>【二重下線】倫理規程 第25条の要点は？</summary><div class="answer">医療法の範囲内、<b>虚偽・誇大の禁止</b>、患者を誤導しない、品位を損なわない。</div></details>
+    <details class="qa"><summary>医療広告ガイドラインの禁止される広告8類型は？</summary><div class="answer">虚偽広告／比較優良広告／誇大広告／公序良俗違反／広告可能事項以外／体験談／誤認前後写真／その他。</div></details>
+    <details class="qa"><summary>医療法違反（法第87条第1号）の罰則は？</summary><div class="answer"><b>6月以下の懲役又は30万円以下の罰金</b>。</div></details>
+    <details class="qa"><summary>報告命令違反・立入検査拒否（法第89条第2号）の罰則は？</summary><div class="answer"><b>20万円以下の罰金</b>。</div></details>
+    <details class="qa"><summary>3B専門医共通研修の5区分は？</summary><div class="answer">①医療倫理　②患者・医療者関係の構築　③医療安全　④院内感染対策　⑤医療関連法規・医療経済。</div></details>
+    <details class="qa"><summary>倫理規程 第9条における「研究」と「発表」の定義は？</summary><div class="answer">研究＝計画立案・実施・成果の発表評価にいたる全過程。発表＝新たな知見・発見や専門的知見を公表する行為。</div></details>
+    <details class="qa"><summary>定款 事業（第4条）の8つの事業を挙げよ。</summary><div class="answer">学術大会・講演会の開催／機関誌等刊行物の発行／教育・研究の調査と推進／医療・対社会事業の実施／研究の奨励及び研究業績の表彰／認定医・指導医・専門医制度の実施／関連学術団体との連絡協力／国際的な研究協力の推進。</div></details>
+    <details class="qa"><summary>定款 総会の決議事項を5つ挙げよ。</summary><div class="answer">会員の除名／理事及び監事の選任又は解任／貸借対照表等の承認／定款の変更／解散及び残余財産の処分。</div></details>
+    <details class="qa"><summary>定款 理事・監事の任期は？</summary><div class="answer">選任後<b>2年以内に終了する事業年度の定時総会まで</b>。</div></details>
+    <details class="qa"><summary>定款 事業年度は？</summary><div class="answer">毎年<b>1月1日〜12月31日</b>。</div></details>
+    <details class="qa"><summary>認定医制度 更新の単位数目安（1回目／2回目／3回目以降）は？</summary><div class="answer">1回目<b>40単位以上</b>／2回目<b>50単位以上</b>／3回目以降<b>75単位以上</b>（直接の臨床報告を行った場合は50単位以上に軽減）。</div></details>
+    <details class="qa"><summary>認定医制度 正規研修と同等の実績を示せる代替ルートを2つ挙げよ。</summary><div class="answer">基本研修修了程度検定試験（施行細則第5条）／臨床研修修了程度検定審査（第6条）。</div></details>
+    <details class="qa"><summary>倫理規程は全何章・何条構成か？</summary><div class="answer"><b>全8章・50条</b>。①会員の基本的姿勢②研究活動③医療活動④教育活動⑤認定医⑥専門医⑦指導医⑧役員・委員会委員。</div></details>
+    <details class="qa"><summary>【二重下線】倫理規程 第46条(2)(4)(5)(6)は認定医の何について定めているか？</summary><div class="answer">学会・資格・矯正歯科医療全体への<b>信頼影響の認識</b>、<b>品位保持</b>、<b>規則遵守</b>、広告の<b>医療法準拠</b>。（(1)(3)は下線なし）</div></details>
+    <details class="qa"><summary>医療広告GLの広告可能事項の限定解除、4要件を挙げよ。</summary><div class="answer">①患者等が自ら求めて入手する情報を表示するウェブサイト等であること②問い合わせ先の明示③自由診療の内容・費用等の情報提供④自由診療の主なリスク・副作用等の情報提供。</div></details>
+    <details class="qa"><summary>未承認医薬品等を自由診療で使用する場合の限定解除要件を4つ挙げよ。</summary><div class="answer">①未承認医薬品等であることの明示②入手経路等の明示③国内の承認医薬品等の有無の明示④諸外国における安全性等に係る情報の明示。</div></details>
+    <details class="qa"><summary>3A基本方針：歯科専門医機構の基本理念5項目のうち①は？</summary><div class="answer"><b>プロフェッショナルオートノミー</b>に基づいた質の保証・維持。</div></details>
+    <details class="qa"><summary>3A：申請学会の要件のうち会員数の基準は？</summary><div class="answer">会員数が<b>千人以上</b>であり、かつ、その<b>8割以上</b>が当該認定に係る歯科医師であること。</div></details>
+    <details class="qa"><summary>3B専門医共通研修④院内感染対策の具体的キーワードを3つ挙げよ。</summary><div class="answer">標準予防策（スタンダードプレコーション）／歯科用器材の滅菌と消毒／耐性菌対策と抗菌薬の適正使用。</div></details>
+  </div>
+
+  <div class="qa-group">
+    <h4>診療ガイドライン（4A〜4G）</h4>
+    <details class="qa"><summary>4B開咬編の発刊年月は？</summary><div class="answer"><b>2023年9月</b>。</div></details>
+    <details class="qa"><summary>4C上顎前突編の対象は？</summary><div class="answer">オーバージェットの大きい<b>II級1類</b>（2類は対象外）。</div></details>
+    <details class="qa"><summary>4D成長期の骨格性下顎前突編の発刊年月と対象時期は？</summary><div class="answer"><b>2020年7月</b>公開。<b>思春期性成長終了前</b>の骨格性下顎前突が対象。</div></details>
+    <details class="qa"><summary>4D：骨格性下顎前突の4分類は？</summary><div class="answer">上顎骨後方位／下顎骨前方位／両者複合／歯性。</div></details>
+    <details class="qa"><summary>4D：ガイドライン作成に採用された方式は？</summary><div class="answer"><b>GRADE方式</b>。</div></details>
+    <details class="qa"><summary>開咬の分類2種は？</summary><div class="answer">歯槽性開咬（dento-alveolar open bite）と骨格性開咬（skeletal open bite）。</div></details>
+    <details class="qa"><summary>開咬の原因となる代表的な口腔習癖を2つ挙げよ。</summary><div class="answer">指しゃぶり（吸指癖）と舌突出癖。</div></details>
+  </div>
+
+  <div class="qa-group">
+    <h4>感染対策・医療安全（参考資料より）</h4>
+    <details class="qa"><summary>標準予防策の考え方は？</summary><div class="answer">血液・体液に関わる<b>すべての湿性物質</b>（汗を除く）を感染性のものとみなして対応する（Standard Precaution）。</div></details>
+    <details class="qa"><summary>歯科治療は感染リスクの視点で何カテゴリーに分けられるか？</summary><div class="answer">3カテゴリー：①観血的治療（抜歯・インプラント植立等）②観血的治療に準ずる治療（歯内療法・歯周療法等）③非観血的治療（矯正・補綴等）。</div></details>
+    <details class="qa"><summary>器具の滅菌消毒3分類は？</summary><div class="answer">クリティカル器具（滅菌）／セミクリティカル器具（消毒）／ノンクリティカル器具（洗浄）。</div></details>
+    <details class="qa"><summary>血液媒介病原体のうち、事前ワクチン接種で抗体を獲得できる唯一のものは？</summary><div class="answer"><b>B型肝炎ウイルス（HBV）</b>。</div></details>
+    <details class="qa"><summary>誤嚥物により気道閉鎖が強く疑われる場合、除去のために試みる方法を2つ挙げよ。</summary><div class="answer">ハイムリック法（患者の後ろに回り臍の上を圧迫）、背部叩打法（最終手段は輪状甲状靱帯穿刺・気管切開）。</div></details>
+    <details class="qa"><summary>年1回のメーカー点検が必要とされる診療室の機器を3つ挙げよ。</summary><div class="answer">歯科用治療ユニット（タービン・電気エンジン含む）、歯科用レーザー、超音波スケーラー。</div></details>
+  </div>
+
+  <div class="qa-group">
+    <h4>HP・広告の不適切表現（参考資料より）</h4>
+    <details class="qa"><summary>比較優良広告に該当するNG表現を2つ挙げよ。</summary><div class="answer">「日本でもトップレベル」「あらゆる症例に対応」「世界で最も厳しい専門医制度」等。</div></details>
+    <details class="qa"><summary>「症例数6000件以上」という表記がNGとなる理由は？</summary><div class="answer">期間の併記がないため。<b>1年ごとに集計したものを複数年にわたって</b>示す必要がある。</div></details>
+    <details class="qa"><summary>治療法・装置名について学会HPガイドラインが求める原則は？</summary><div class="answer">学術用語集記載の用語か一般名称を使用。紛らわしい表現は学術用語と併記（例：インプラント矯正→歯科矯正用アンカースクリューを用いた矯正歯科治療）。</div></details>
+    <details class="qa"><summary>学会HPガイドラインで掲載を控えるべきとされる用語例を3つ挙げよ。</summary><div class="answer">ブライダル矯正、スピード矯正、プチ矯正（他にキッズ矯正・ティーンズ矯正・シニア矯正等）。</div></details>
+    <details class="qa"><summary>治療費表記で品位を損なうとされるNG例を2つ挙げよ。</summary><div class="answer">「〇〇県で最安価格」「他院との費用比較」「家族割引」「開院初年度割引」等。</div></details>
+  </div>
+
+  <div class="qa-group">
+    <h4>教科書系（A〜E）</h4>
+    <details class="qa"><summary>骨吸収を担う細胞とその由来は？</summary><div class="answer"><b>破骨細胞</b>。血液幹細胞から分化した多核のマクロファージ。</div></details>
+    <details class="qa"><summary>Angleの不正咬合分類の基準は？</summary><div class="answer"><b>上下顎第一大臼歯の対咬関係</b>。</div></details>
+    <details class="qa"><summary>予防矯正と抑制矯正の違いは？</summary><div class="answer">予防矯正＝原因除去で発現自体を予防。抑制矯正＝既に生じた不正を早期発見で増悪抑制。</div></details>
+    <details class="qa"><summary>顎間ゴムのI級ゴムとII級ゴムの違いは？</summary><div class="answer"><b>I級</b>＝下顎臼歯部→上顎前歯/犬歯。<b>II級</b>＝上顎臼歯部→下顎前歯/犬歯。</div></details>
+    <details class="qa"><summary>固定の抵抗の性質による5分類は？</summary><div class="answer"><b>単純・不動・相反・加強・準備固定</b>。</div></details>
+    <details class="qa"><summary>抜歯空隙利用の固定3分類の基準は？</summary><div class="answer">臼歯近心移動許容量が抜歯空隙の<b>1/2以上＝最小</b>、<b>1/4〜1/2＝中等度</b>、<b>1/4未満＝最大</b>。</div></details>
+    <details class="qa"><summary>Tweedの準備固定で用いられる手法は？</summary><div class="answer">セカンドオーダーベンドとII級ゴムで下顎側方歯を<b>あらかじめ遠心傾斜</b>させておく。</div></details>
+    <details class="qa"><summary>スペース不足量による抜歯基準（プロフィト8章）は？</summary><div class="answer"><b>4mm以下</b>＝非抜歯可、<b>5〜9mm</b>＝境界域、<b>10mm以上</b>＝ほぼ必須抜歯。</div></details>
+    <details class="qa"><summary>オーバージェット何mm以上で切歯部外傷リスク約30%？</summary><div class="answer"><b>6mm以上</b>。</div></details>
+    <details class="qa"><summary>包括矯正治療のおおよその標準治療期間は？</summary><div class="answer">およそ<b>18〜30か月</b>。</div></details>
+    <details class="qa"><summary>口唇口蓋裂の咬合異常5特徴は？</summary><div class="answer">骨格性反対咬合、上顎歯列弓狭窄、上顎前歯舌側傾斜、顎裂と先天性欠如、顎裂近接歯の位置異常。</div></details>
+    <details class="qa"><summary>Lundstromが1925年に提唱した理論は？</summary><div class="answer"><b>歯槽基底論</b>。</div></details>
+    <details class="qa"><summary>顎外固定装置を3つ挙げよ。</summary><div class="answer">ヘッドギア、上顎前方牽引装置、チンキャップ（オトガイ帽装置）。</div></details>
+    <details class="qa"><summary>インプラント（TAD）による固定の利点と欠点は？</summary><div class="answer">利点＝固定源が骨と一体化し<b>固定喪失の心配が少ない</b>、患者協力度に依存しにくい。欠点＝植立・撤去に<b>観血処置が必要</b>、周囲の衛生管理が必要。</div></details>
+    <details class="qa"><summary>歯科矯正学2章にあるWHOの定義は何か？</summary><div class="answer">World Health Organization（世界保健機関）。「すべての人々が可能な最高の健康水準に到達すること」（憲章第1条）を目的とする。</div></details>
+    <details class="qa"><summary>視床下部から始まるホルモン軸が制御する現象は？（プロフィト4章）</summary><div class="answer">視床下部→脳下垂体前葉→性腺（精巣・卵巣・副腎）のホルモン軸が<b>第二次性徴の発現と成長スパート</b>を制御する。</div></details>
+    <details class="qa"><summary>トリーチャーコリンズ症候群の原因は？</summary><div class="answer">顔の外側の<b>間葉組織（胎生期結合組織）の全体的な欠如</b>。眼の外側と頬骨部の低形成、耳への影響を伴うことがある。</div></details>
+    <details class="qa"><summary>ヘミフェイシャルミクロソミアの主な原因は？</summary><div class="answer">胎生の初期段階における<b>神経堤細胞の欠如</b>（かつては鐙骨動脈からの出血が原因と考えられていたが、その後の研究で否定的）。</div></details>
+    <details class="qa"><summary>大臼歯関係改善の3手法（プロフィト17章）は？</summary><div class="answer">①顎外力・機能的装置による上下顎骨の成長差の利用②上下の前後的移動量の差の利用③顎間ゴムの利用。</div></details>
+    <details class="qa"><summary>抜歯論争の歴史でSpooner（1839）が提唱したことは？</summary><div class="answer">小臼歯あるいは第一大臼歯<b>4本の抜歯</b>をすすめた。</div></details>
+    <details class="qa"><summary>治療計画立案でプロフィト7章が強調する2つの回避すべき側面は？</summary><div class="answer"><b>過小治療（偽陰性）</b>と<b>過剰治療（偽陽性）</b>の両方を避けるように設計すること。</div></details>
+    <details class="qa"><summary>ワイヤーの力学特性を示す力・たわみ曲線上の3つのポイントは？</summary><div class="answer">比例限界、降伏点、（弾性復元をもたらす）弾性限界。ワイヤーは降伏点を超えても臨床的に有効な弾性復元力を示す。</div></details>
+    <details class="qa"><summary>保定の3分類（歯科矯正学19章）は？</summary><div class="answer">自然的保定、器械的保定、永久的保定。</div></details>
+    <details class="qa"><summary>咬合とarticulationの違い（歯科矯正学4章）は？</summary><div class="answer">かつては下顎が偏心位に滑走している時の歯の接触関係を<b>articulation（咬合）</b>、閉口時の接触状態を<b>occlusion（咬合）</b>と区別していたが、近年この区別の意義は薄れている。</div></details>
+  </div>
+
+  <div class="qa-group">
+    <h4>文献10編</h4>
+    <details class="qa"><summary>MBSミニスクリューの初期脱落率は？</summary><div class="answer"><b>7.2%</b>。左側が右側より有意に高い。</div></details>
+    <details class="qa"><summary>フッ素によるWSL予防で特に効果的な投与法は？</summary><div class="answer"><b>局所（トピカル）フッ素塗布</b>。</div></details>
+    <details class="qa"><summary>MOP併用の犬歯遠心移動速度は？</summary><div class="answer">従来法と比較して<b>有意に速い</b>。</div></details>
+    <details class="qa"><summary>OIIRRのCBCT評価での平均吸収量は？</summary><div class="answer"><b>0.79〜0.86mm</b>。臨床的意義は乏しい。</div></details>
+    <details class="qa"><summary>Toffol et al.(2008)のSRが対象とした治療は？</summary><div class="answer">Class III早期整形治療（<b>フェイスマスク・チンキャップ・FR-3</b>）。中〜高品質研究の75%超で治療終了5年後も改善が維持されたと報告。</div></details>
+    <details class="qa"><summary>Becker & Chaushu(2015)がレビューした病因は？</summary><div class="answer"><b>上顎犬歯埋伏</b>の病因。硬組織による閉塞、軟組織病変、隣接歯の異常が主な誘因。</div></details>
+    <details class="qa"><summary>Okeson(2015)のレビューのテーマは？</summary><div class="answer">矯正歯科における<b>咬合とTMD（顎関節症）</b>の考え方の歴史的変遷。</div></details>
+    <details class="qa"><summary>Gadhiya et al.(2025)が検証したのは何か？</summary><div class="answer">臼歯部<b>交叉咬合の早期是正</b>が咀嚼筋活動（表面筋電図）に与える影響。</div></details>
+    <details class="qa"><summary>Barakaat et al.(2025)が比較したのは何か？</summary><div class="answer">顎矯正手術における<b>CAD/CAM製副子と従来型副子</b>の術前計画に対する精度。</div></details>
+  </div>
+</section>
+
+<section id="s10">
+  <div class="sec-head"><span class="sec-num">10</span><h2>参考：旧ガイドブックからの補足情報</h2></div>
+  <p class="lede">write-exam_guidebook.pdf（日本矯正歯科専門医機関、約2年前発行）より。<b>出題範囲・配分は現行のsp_examscope_2026.pdf等と異なる可能性がある</b>ため参考程度に留める。感染対策・医療安全・広告NG表現など、制度が変わっても内容自体は今も有用と考えられる部分のみ抜粋。</p>
+
+  <h3>F1 感染対策・医療安全（実文）</h3>
+  <div class="card">
+    <ul>
+      <li>標準予防策：血液・体液に関わる湿性物質を全て感染性とみなして対応。歯科治療は①観血的治療②準ずる治療③非観血的治療（矯正等）の3分類。</li>
+      <li>矯正装置調整時も口腔外で手袋着用、ワイヤーは鋭利な器具として扱う。</li>
+      <li>器具の滅菌消毒3分類：クリティカル（滅菌）／セミクリティカル（消毒）／ノンクリティカル（洗浄）。</li>
+      <li>B型肝炎ウイルス(HBV)は唯一ワクチンで事前に抗体獲得可能。針刺し時はリキャップ禁止、シャープスコンテナ廃棄。</li>
+      <li>誤飲・誤嚥事故：気道閉鎖疑い時は除去を最優先（指交叉法、ハイムリック法、背部叩打法、最終手段は気管切開）。</li>
+      <li>マルチブラケット結紮線の断端で皮膚・目を損傷する可能性、ゴーグル着用を考慮。</li>
+      <li>医療機器安全管理：治療ユニット・レーザー・超音波スケーラーはメーカー年1回点検＋始業点検・1ヶ月点検が必要。</li>
+    </ul>
+  </div>
+
+  <h3>倫理規程 研究活動・教育活動の追加条文</h3>
+  <div class="card">
+    <ul>
+      <li>研究活動の遵守事項：捏造改ざん禁止、文化多様性の尊重、共同研究者の対等な人格の尊重、知的財産の尊重、個人情報保護、オーサーシップは実質的関与・十分な貢献がある場合のみ。</li>
+      <li>人を対象とした研究：被験者の福利は科学的進歩・社会的利益より優先。自発的自由意志、IC、いつでも撤回可能、倫理審査委員会の承認が必要。</li>
+      <li>教育活動：被教育者の人格・人権の尊重、品位ある行動、自己の教育能力の点検改善の努力。</li>
+    </ul>
+  </div>
+
+  <h3>医療広告：不適切表現の具体例</h3>
+  <div class="card">
+    <ul>
+      <li>比較優良広告のNG例：「日本でもトップレベル」「あらゆる症例に対応」「世界で最も厳しい専門医制度」。</li>
+      <li>症例数・満足度：「症例数6000件以上」「患者満足度99％、100％」等は期間併記なしだとNG（1年ごとの複数年集計が必要）。</li>
+      <li>誇大・虚偽広告：「痛みの少ない、歯を抜かない△△」「1年で終わる」「あっという間の矯正治療」「ムーシールド90％」。</li>
+      <li>誇張表現：「美容矯正」「自然派矯正」「ホワイトワイヤー矯正」「キッズ矯正」「ティーンズ矯正」「シニア矯正」。</li>
+      <li>略歴表記：学会役員は現任かつ活動内容・役員名簿が公開されている場合のみ広告可。単なる会員である旨は原則不可。</li>
+      <li>品位を損ねる例：「〇〇県で最安価格」「他院との費用比較」「イベントプレゼント」「家族割引」「開院初年度割引」。</li>
+    </ul>
+  </div>
+
+  <h3>4E アンカースクリューGLの旧・出題除外範囲</h3>
+  <div class="card">
+    <p class="lede" style="margin-bottom:0;">旧ガイドブックでは「Ⅱ－3.植立術式」「Ⅱ－4.歯の移動メカニクス」「Ⅱ－7.撤去術式」「Ⅱ－8.保定と予後」の4項目を出題範囲から除外すると明記。現行の出題範囲がこの方針を引き継いでいるかは不明だが、除外対象=臨床手技寄り、対象=総論・リスク管理・制度寄り、という傾向は優先順位づけの参考になる。</p>
+  </div>
+</section>
+
+<div class="final-note">
+  <b>正直な評価</b>
+  このノートは試験範囲の地図としては網羅的だが、これだけで合格を保証するものではない。過去問が存在せず選択肢の見分け方は練習できないこと、G5（統計学・実験計画法）は資料自体が存在しないこと、章の本文・図表を実際に読み込む作業は別途必要なことに注意。詳細版はデスクトップの docx ファイルを参照。
+</div>
+
+</main>
+
+<footer>専門医試験対策ノート 2026 ／ 作成日 2026年7月16日</footer>
